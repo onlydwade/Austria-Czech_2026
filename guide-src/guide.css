@@ -84,6 +84,7 @@ p{margin:0}
 .h-links a{font-size:.74rem;font-weight:700;text-decoration:none;padding:2px 9px;border-radius:99px;border:1px solid;white-space:nowrap;line-height:1.6}
 .h-links .h-map{color:var(--river);border-color:var(--river)}
 .h-links .h-fac{color:var(--garnet);border-color:var(--garnet)}
+.h-links .h-mkt{color:var(--ink);border-color:var(--gold);background:var(--gold-wash)}
 .h-en{display:block;font-weight:400;font-size:.82rem;color:var(--ink2);line-height:1.4}
 .s-map{display:block;font-size:.72rem;font-weight:500;color:var(--river);margin-top:2px}
 
@@ -283,3 +284,43 @@ p{margin:0}
 .js .place.open{display:block}
 .js body.reading #main{display:none}
 .js body:not(.reading) #reader{display:none}
+
+/* ── supermarket pages: map pins use fixed colors because the map tiles stay light in dark mode ── */
+.mk-map{margin:0;display:grid;gap:6px}
+.mk-canvas{position:relative;width:100%;overflow:hidden;border-radius:10px;border:1px solid var(--rule);background:var(--wash)}
+.mk-canvas img{position:absolute;max-width:none;display:block;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.mk-pin{position:absolute;z-index:2;transform:translate(-50%,-50%);display:grid;place-items:center;width:26px;height:26px;border-radius:50%;
+  background:#1E6878;color:#fff;font:700 .8rem/1 var(--f-body);text-decoration:none;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.35)}
+.mk-pin.near{box-shadow:0 0 0 3px #C8960C,0 1px 4px rgba(0,0,0,.35)}
+.mk-pin.hotel{z-index:3;width:30px;height:30px;background:#962437;font-family:var(--f-head);font-size:.9rem}
+.mk-scale{position:absolute;left:8px;bottom:8px;z-index:2;box-sizing:border-box;padding:0 0 2px;border:2px solid #18202C;border-top:0;
+  background:rgba(255,255,255,.75);color:#18202C;font:700 .66rem/1.2 var(--f-body);text-align:center;white-space:nowrap}
+.mk-attr{position:absolute;right:0;bottom:0;z-index:2;padding:1px 6px;border-top-left-radius:6px;background:rgba(255,255,255,.85);
+  color:#333;font-size:.62rem;line-height:1.4;text-decoration:none}
+.mk-map figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:2px;font-size:.8rem;color:var(--ink2)}
+.mk-lg{display:inline-grid;place-items:center;width:18px;height:18px;margin-right:3px;border-radius:50%;background:#1E6878;color:#fff;font-size:.66rem;font-weight:700}
+.mk-lg.hotel{background:#962437}
+.mk-lg.near{box-shadow:0 0 0 2px #C8960C}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .mk-canvas img{filter:brightness(.82)}}
+:root[data-theme="dark"] .mk-canvas img{filter:brightness(.82)}
+.mk-hrs{overflow-x:auto}
+.mk-hrs table{width:100%;border-collapse:collapse;font-size:.84rem;font-variant-numeric:tabular-nums}
+.mk-hrs th,.mk-hrs td{padding:8px 4px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top;line-height:1.5}
+.mk-hrs th:first-child{padding-left:0}
+.mk-hrs thead th{font-size:.76rem;font-weight:700;color:var(--ink2);white-space:nowrap}
+.mk-hrs tbody th{font-weight:700;min-width:6em}
+.mk-hrs td.closed{color:var(--garnet);font-weight:700}
+.mk-no{display:inline-grid;place-items:center;flex:0 0 auto;width:20px;height:20px;margin-right:6px;border-radius:50%;
+  background:#1E6878;color:#fff;font-size:.7rem;font-weight:700;vertical-align:1px}
+.mk-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.mk-store{display:grid;gap:3px;padding:12px 14px;border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
+.mk-store.near{border-color:var(--gold);box-shadow:inset 3px 0 0 var(--gold)}
+.mk-h{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+.mk-h .mk-no{margin-right:2px}
+.mk-h b{font-size:1rem}
+.mk-kind{padding:0 8px;border:1px solid var(--rule);border-radius:99px;font-size:.74rem;color:var(--ink2)}
+.mk-near{padding:0 8px;border:1px solid var(--gold);border-radius:99px;background:var(--gold-wash);font-size:.74rem;font-weight:700;color:var(--ink)}
+.mk-meta{font-size:.86rem;line-height:1.6;color:var(--ink2)}
+.mk-dist{color:var(--ink);font-weight:500}
+.mk-note{margin-top:4px;font-size:.92rem;line-height:1.7}
+.mk-store .h-links{margin-top:8px}

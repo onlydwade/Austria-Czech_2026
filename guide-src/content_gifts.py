@@ -90,7 +90,7 @@ SHOP_PLAN = [
 ]
 
 GIFT_TIPS = [
-  ("超市補貨", "共和廣場旁的 Palladium 購物中心地下有 Albert 超市，就在飯店隔壁，買巧克力、薄餅、零食最方便。・[[https://www.google.com/maps/search/?api=1&query=Albert%2C+Palladium%2C+N%C3%A1m%C4%9Bst%C3%AD+Republiky%2C+Praha|地圖 ↗]]"),
+  ("超市補貨", "共和廣場旁的 Palladium 購物中心地下有 Albert 超市，就在飯店隔壁，買巧克力、薄餅、零食最方便。・[[https://www.google.com/maps/search/?api=1&query=Albert%2C+Palladium%2C+N%C3%A1m%C4%9Bst%C3%AD+Republiky%2C+Praha|地圖 ↗]]・[[m-prague|附近其他超市]]"),
   ("液體", "酒、果醬、保養品液體每瓶超過 100 ml 要放託運，用衣服包好防破。"),
   ("酒類", "年滿 20 歲入境台灣，酒類免稅 1 公升，超過要申報。"),
   ("肉製品", "香腸、火腿、肉乾等肉製品一律不要帶回台灣，入境會被重罰。"),

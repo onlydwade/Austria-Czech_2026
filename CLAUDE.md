@@ -11,6 +11,7 @@
    - `content_shops.py`：伴手禮門市頁，`SH("s-xxx", ...)`。
    - `content_gifts.py`：伴手禮清單、照天數買、帶回台灣注意事項。
    - `content_maps.py`：景點頁的 Google 地圖搜尋字串、車程日路線。
+   - `content_markets.py`：超市頁。`M("m-xxx", ...)` 是各飯店附近的超市（座標、營業時間、我們在那裡的日期），`OVERVIEW` 是奧捷超市總覽 `m-markets`。飯店旁的「附近超市」按鈕依 `key` 自動出現。地圖底圖是 OpenStreetMap 圖磚，沒有可靠座標的店 `ll=None`，不畫在地圖上。
    - `guide.css`、`guide.js`：樣式與互動。
    - 網頁圖示在根目錄：`favicon.png`（192×192）、`apple-touch-icon.png`（180×180，iPhone 加入主畫面用），是使用者的貓咪照片裁成正方形。
 2. 產生網頁：`python guide-src/build_guide.py`（Python 3.8 以上）。會寫出 `index.html`（GitHub Pages 用）和 `austria-czech-guide.html`（Claude Artifact 用，已在 .gitignore）。
@@ -20,7 +21,7 @@
 
 ## 內容寫法
 
-- 文字中 `[[p-id|文字]]` 連到站內頁面（`p-` 景點、`h-` 飯店／設施、`s-` 門市），`[[https://...|文字]]` 是外部連結。
+- 文字中 `[[p-id|文字]]` 連到站內頁面（`p-` 景點、`h-` 飯店／設施、`s-` 門市、`m-` 超市），`[[https://...|文字]]` 是外部連結。
 - 景點標記：`★` 入內含門票、`▲` 主要景點、`◆` 使用者自己的安排、空字串為一般或參考。
 - 只放在景點百科、不在行程裡的景點，加 `ref=True`。
 - 新的地點要給 Google 地圖連結：景點頁加在 `content_maps.PLACE_MAP`，行內文字用 `[[地圖網址|地圖 ↗]]`。
