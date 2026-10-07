@@ -12,6 +12,7 @@
    - `content_gifts.py`：伴手禮清單、照天數買、帶回台灣注意事項。
    - `content_maps.py`：景點頁的 Google 地圖搜尋字串、車程日路線。
    - `guide.css`、`guide.js`：樣式與互動。
+   - 網頁圖示在根目錄：`favicon.png`（192×192）、`apple-touch-icon.png`（180×180，iPhone 加入主畫面用），是使用者的貓咪照片裁成正方形。
 2. 產生網頁：`python guide-src/build_guide.py`（Python 3.8 以上）。會寫出 `index.html`（GitHub Pages 用）和 `austria-czech-guide.html`（Claude Artifact 用，已在 .gitignore）。
 3. 檢查站內連結：`python guide-src/check_links.py`，必須顯示 OK。
 4. 提交 `guide-src/` 和 `index.html`，**直接推到 `main`**。這個專案沒有審核流程，使用者通常在旅途中用手機下指令；GitHub Pages 只發布 `main`，推到其他分支網頁不會更新。如果環境不允許直接推 `main`，就開 PR，並告訴使用者到 GitHub App 按「Merge」。

@@ -612,6 +612,8 @@ with open(OUT, "w", encoding="utf-8") as f:
 STANDALONE_META = '''<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#962437">
 <meta name="apple-mobile-web-app-title" content="奧捷 12 日">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 '''
 standalone = ('<!doctype html>\n<html lang="zh-Hant">\n<head>\n' + HEAD + STANDALONE_META
               + '</head>\n<body>\n' + BODY + '</body>\n</html>\n')
