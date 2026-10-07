@@ -1,0 +1,10 @@
+# 旅行社原始文件不公開
+*.pdf
+
+# Claude Artifact 版本（不放 GitHub）
+austria-czech-guide.html
+
+# 本機工具
+.claude/
+__pycache__/
+*.pyc
