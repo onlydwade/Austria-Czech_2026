@@ -144,11 +144,12 @@
     } else { selectIt(); }
   });
 
-  // Highlight the day in the rail while scrolling.
-  var chips = rail ? rail.querySelectorAll(".chip[data-day]") : [];
-  function setActive(n) {
+  // Highlight the day or section (百科・伴手禮・小提醒) in the rail while scrolling.
+  // A section without a chip (和原 PDF 的差異) clears the highlight.
+  var chips = rail ? rail.querySelectorAll(".chip") : [];
+  function setActive(id) {
     for (var i = 0; i < chips.length; i++) {
-      var on = chips[i].getAttribute("data-day") === String(n);
+      var on = chips[i].getAttribute("href") === "#" + id;
       chips[i].classList.toggle("on", on);
       if (on && !dragging) {
         var c = chips[i];
@@ -163,10 +164,10 @@
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) setActive(en.target.id.slice(1));
+        if (en.isIntersecting) setActive(en.target.id);
       });
     }, { rootMargin: "-35% 0px -60% 0px" });
-    document.querySelectorAll(".day").forEach(function (d) { io.observe(d); });
+    document.querySelectorAll(".day, #guide, .block").forEach(function (d) { io.observe(d); });
   }
 
   // Countdown before the trip, "today" during it.

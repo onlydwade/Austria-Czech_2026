@@ -528,7 +528,7 @@ def render_changes():
 
 def render_tips():
     li = "".join(f'<li><b>{esc(k)}</b><span>{esc(v)}</span></li>' for k, v in TIPS)
-    return (f'<section class="wrap block" id="tips" data-label="旅途小抄"><h2 class="sec-h">旅途小抄</h2>'
+    return (f'<section class="wrap block" id="tips" data-label="旅途小提醒"><h2 class="sec-h">旅途小提醒</h2>'
             f'<ul class="facts">{li}</ul></section>')
 
 def render_brief():
@@ -547,7 +547,7 @@ def render_rail():
         f'<a class="chip" draggable="false" href="#d{d["n"]}" data-day="{d["n"]}"><b>{d["n"]}</b><span>{d["date"]}</span></a>' for d in DAYS)
     chips += ('<a class="chip txt" draggable="false" href="#guide">百科</a>'
               '<a class="chip txt" draggable="false" href="#gifts">伴手禮</a>'
-              '<a class="chip txt" draggable="false" href="#tips">小抄</a>')
+              '<a class="chip txt" draggable="false" href="#tips">小提醒</a>')
     return ('<nav class="rail" aria-label="跳到某一天"><div class="rail-row">'
             '<button type="button" class="rail-btn" id="railPrev" aria-label="往前捲動天數">‹</button>'
             f'<div class="rail-in" id="rail">{chips}</div>'
