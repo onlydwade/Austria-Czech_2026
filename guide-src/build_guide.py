@@ -4,7 +4,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from content_places import PLACES
 from content_hotels import HOTELS
 from content_shops import SHOPS
-from content_maps import PLACE_MAP, DAY_ROUTES, MEET_MAP, PRG_T1_MAP
+from content_maps import PLACE_MAP, DAY_ROUTES, MEET_MAP, PRG_T1_MAP, WX_LOCS, DAY_WX
 HOTELS.update(SHOPS)  # shop pages share the hotel page layout
 from content_gifts import GIFTS_MINE, GIFTS_AT, GIFTS_CZ, SHOP_PLAN, GIFT_TIPS
 from content_markets import MARKETS, OVERVIEW, WD
@@ -153,7 +153,7 @@ CHANGES = [
 TIPS = [
   ("時差", "奧地利與捷克在 10/25 前是夏令時間，比台灣慢 6 小時。"),
   ("貨幣", "奧地利用歐元 EUR，捷克用克朗 CZK。兩國刷卡都很普遍，捷克換匯前先問清楚實拿金額。"),
-  ("天氣", "10 月中旬白天約 10–16°C，早晚可能低到 5°C 以下，湖區與鹽礦更冷。洋蔥式穿法，帶防風外套和摺疊傘。"),
+  ("天氣", "10 月中旬白天約 10–16°C，早晚可能低到 5°C 以下，湖區與鹽礦更冷。洋蔥式穿法，帶防風外套和摺疊傘。山區天氣不穩定，最近有冷鋒，出發前整理行李時再看一次預報：[[https://www.bbc.com/weather/3067696|BBC 布拉格]]・[[https://www.bbc.com/weather/2761369|BBC 維也納]]・[[https://www.bbc.com/weather/2776943|BBC 哈斯達特]]。每天行程開頭也有當天的天氣預報。"),
   ("電壓插座", "230V，雙圓孔插座（C／F 型），台灣電器需要轉接頭。"),
   ("網路", "行程贈送歐洲 SIM 卡，每天 1GB。"),
   ("飲水", "兩國自來水都可以生飲；餐廳的水要另外付費，行程每天提供一瓶瓶裝水。"),
@@ -297,6 +297,19 @@ def render_route(d):
         note += f'<a class="r-map" href="{esc(DAY_ROUTES[d["n"]])}" target="_blank" rel="noopener">看路線 ↗</a>'
     return f'<p class="route">{"".join(parts)}{note}</p>'
 
+def render_wx(d):
+    """每天的天氣預報小標題；預報由 guide.js 在手機上向 Open-Meteo 抓。"""
+    y, m_, dd = 2026, *map(int, d["date"].split("/"))
+    li, bbc = [], []
+    for k in DAY_WX[d["n"]]:
+        name, lat, lon, bid = WX_LOCS[k]
+        li.append(f'<li data-loc="{k}" data-ll="{lat},{lon}"><span class="wx-c">{name}</span>'
+                  f'<span class="wx-v">需要網路才看得到預報</span></li>')
+        if bid:
+            bbc.append(f'<a href="https://www.bbc.com/weather/{bid}" target="_blank" rel="noopener">BBC {name} ↗</a>')
+    return (f'<div class="wx" data-date="{y}-{m_:02d}-{dd:02d}"><p class="wx-h">天氣預報</p>'
+            f'<ul class="wx-list">{"".join(li)}</ul><p class="wx-src"><span class="wx-t"></span>{"".join(bbc)}</p></div>')
+
 def render_stop(pid, note, day_n):
     p = PLACES[pid]
     mk = p["mark"]
@@ -320,6 +333,7 @@ def render_day(d):
              f'<p class="when"><span class="sr">Day {n}・</span>{d["date"]}<span class="wd">週{d["wd"]}</span>{pill}'
              f'<span class="today-pill" hidden>今天</span></p>'
              f'<h2>{esc(d["city"])}</h2><p class="theme">{esc(d["theme"])}</p></div></header>')
+    o.append(render_wx(d))
     o.append(render_route(d))
     if d.get("flight"):
         o.append(f'<p class="flight"><span class="fl-k">航班</span>{esc(d["flight"])}</p>')

@@ -170,6 +170,85 @@
     document.querySelectorAll(".day, #guide, .block").forEach(function (d) { io.observe(d); });
   }
 
+  // Daily weather forecast from Open-Meteo (free, no API key), one request for every place.
+  // Cached for 2 hours, and the last forecast stays visible when the phone is offline.
+  (function () {
+    var boxes = document.querySelectorAll(".wx");
+    if (!boxes.length) return;
+    var CODES = {
+      0: ["☀️", "晴"], 1: ["🌤️", "大致晴朗"], 2: ["⛅", "晴時多雲"], 3: ["☁️", "陰"], 45: ["🌫️", "霧"], 48: ["🌫️", "霧"],
+      51: ["🌦️", "毛毛雨"], 53: ["🌦️", "毛毛雨"], 55: ["🌧️", "毛毛雨"], 56: ["🌧️", "凍毛毛雨"], 57: ["🌧️", "凍毛毛雨"],
+      61: ["🌧️", "小雨"], 63: ["🌧️", "中雨"], 65: ["🌧️", "大雨"], 66: ["🌧️", "凍雨"], 67: ["🌧️", "凍雨"],
+      71: ["🌨️", "小雪"], 73: ["🌨️", "中雪"], 75: ["❄️", "大雪"], 77: ["🌨️", "霰"],
+      80: ["🌦️", "陣雨"], 81: ["🌧️", "陣雨"], 82: ["⛈️", "強陣雨"], 85: ["🌨️", "陣雪"], 86: ["❄️", "強陣雪"],
+      95: ["⛈️", "雷雨"], 96: ["⛈️", "雷雨夾冰雹"], 99: ["⛈️", "雷雨夾冰雹"]
+    };
+    var KEY = "wx-cache-v1", FRESH = 2 * 3600 * 1000;
+    function iso(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
+    function shift(days) { var d = new Date(); d.setDate(d.getDate() + days); return iso(d); }
+    // Open-Meteo forecasts 16 days ahead; stay a day short so the phone's time zone never asks past the limit.
+    var from = ["2026-10-11", shift(-60)].sort()[1];
+    var to = ["2026-10-22", shift(14)].sort()[0];
+    var locs = {}, keys = [];
+    document.querySelectorAll(".wx [data-loc]").forEach(function (li) {
+      var k = li.getAttribute("data-loc");
+      if (!locs[k]) { locs[k] = li.getAttribute("data-ll").split(","); keys.push(k); }
+    });
+    function stamp(t) { var d = new Date(t); return (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + ("0" + d.getMinutes()).slice(-2); }
+    function paint(c, offline) {
+      boxes.forEach(function (box) {
+        var date = box.getAttribute("data-date");
+        box.querySelectorAll("[data-loc]").forEach(function (li) {
+          var v = li.querySelector(".wx-v");
+          var r = c && c.v[li.getAttribute("data-loc")];
+          r = r && r[date];
+          if (r && r[0] != null) {
+            var w = CODES[r[0]] || ["", ""];
+            var rain = r[3] == null ? "" : '<span class="wx-p">降雨 ' + r[3] + "%</span>";
+            v.innerHTML = '<span class="wx-i" aria-hidden="true">' + w[0] + "</span>" + w[1] +
+              " <b>" + Math.round(r[2]) + "–" + Math.round(r[1]) + "°C</b>" + rain;
+          } else if (date > to) {
+            v.textContent = "出發前約兩週才有預報";
+          } else {
+            v.textContent = c ? "沒有這天的預報" : "暫時抓不到預報";
+          }
+        });
+        var t = box.querySelector(".wx-t");
+        if (t && c) t.innerHTML = '<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> ' +
+          (offline ? "離線，顯示 " + stamp(c.t) + " 的預報" : stamp(c.t) + " 更新");
+      });
+    }
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem(KEY)); } catch (_) { cached = null; }
+    if (cached && Date.now() - cached.t < FRESH) { paint(cached, false); return; }
+    if (from > to || !window.fetch) { paint(cached, !!cached); return; }
+    boxes.forEach(function (box) {
+      box.querySelectorAll(".wx-v").forEach(function (v) { v.textContent = "載入中…"; });
+    });
+    var url = "https://api.open-meteo.com/v1/forecast?latitude=" + keys.map(function (k) { return locs[k][0]; }).join(",") +
+      "&longitude=" + keys.map(function (k) { return locs[k][1]; }).join(",") +
+      "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=auto" +
+      "&start_date=" + from + "&end_date=" + to;
+    fetch(url).then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    }).then(function (json) {
+      var list = Array.isArray(json) ? json : [json];
+      var c = { t: Date.now(), v: {} };
+      keys.forEach(function (k, i) {
+        var d = list[i] && list[i].daily;
+        if (!d) return;
+        c.v[k] = {};
+        d.time.forEach(function (day, j) {
+          c.v[k][day] = ["weather_code", "temperature_2m_max", "temperature_2m_min", "precipitation_probability_max"]
+            .map(function (name) { return d[name] ? d[name][j] : null; });
+        });
+      });
+      try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (_) {}
+      paint(c, false);
+    }).catch(function () { paint(cached, !!cached); });
+  })();
+
   // Countdown before the trip, "today" during it.
   var start = new Date(2026, 9, 11);
   var now = new Date();

@@ -324,3 +324,17 @@ p{margin:0}
 .mk-dist{color:var(--ink);font-weight:500}
 .mk-note{margin-top:4px;font-size:.92rem;line-height:1.7}
 .mk-store .h-links{margin-top:8px}
+
+/* ── daily weather (filled in by guide.js from Open-Meteo) ── */
+.wx{display:grid;gap:4px;padding:10px 12px;border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
+.wx-h{font-size:.78rem;font-weight:700;letter-spacing:.04em;color:var(--river)}
+.wx-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.wx-list li{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 10px;font-size:.92rem;line-height:1.6}
+.wx-c{min-width:5em;font-weight:700}
+.wx-v{color:var(--ink2)}
+.wx-v b{color:var(--ink);font-variant-numeric:tabular-nums}
+.wx-i{margin-right:4px}
+.wx-p{margin-left:8px;font-weight:500;color:var(--river)}
+.wx-src{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.74rem;color:var(--ink2)}
+.wx-src a{color:var(--river)}
+.wx-t:empty{display:none}
