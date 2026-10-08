@@ -257,7 +257,7 @@
   var count = document.getElementById("count");
   var link = document.getElementById("todayLink");
   if (diff < 0) {
-    count.textContent = "出發倒數 " + (-diff) + " 天・10/11（日）21:00 桃園機場集合";
+    count.textContent = "出發倒數 " + (-diff) + " 天・10/11（日）20:50 桃園機場集合";
   } else if (diff <= 11) {
     var n = diff + 1;
     var sec = document.getElementById("d" + n);
