@@ -72,23 +72,25 @@ DAYS = [
  dict(n=8, date="10/18", wd="日", city="溫泉區 → 布拉格", theme="卡羅維瓦利・查理大橋・舊城廣場", status="upd",
       route=["瑪麗安斯凱", 55, "卡羅維瓦利", 128, "布拉格"],
       stops=[("p-karlovy", ""), ("p-prague", ""), ("p-charles", ""), ("p-oldtownsq", ""), ("p-tyn", ""), ("p-orloj", "")],
-      extra=["在卡羅維瓦利記得試現烤的[[p-karlovy|溫泉薄餅]]，柱廊一帶到處都有店家・[[https://www.google.com/maps/search/?api=1&query=L%C3%A1ze%C5%88sk%C3%A9+oplatky%2C+Karlovy+Vary|薄餅店家地圖 ↗]]"],
+      extra=["在卡羅維瓦利記得試現烤的[[p-karlovy|溫泉薄餅]]，柱廊一帶到處都有店家・[[https://www.google.com/maps/search/?api=1&query=L%C3%A1ze%C5%88sk%C3%A9+oplatky%2C+Karlovy+Vary|薄餅店家地圖 ↗]]",
+             "晚上在老城附近，想吃煙囪捲或冰淇淋，見[[p-prague-picks|布拉格口袋名單]]。"],
       meals=[("早", "飯店內早餐"), ("午", "風味料理餐廳＋酒水"), ("晚", "捷克醬鴨料理＋酒水")],
       hotel=("Hotel KINGS COURT Prague", "布拉格三晚連泊。共和廣場旁，隔壁是市民會館和火藥塔，走到舊城廣場約 10 分鐘。")),
  dict(n=9, date="10/19", wd="一", city="布拉格", theme="城堡區・黃金巷・舊城廣場", status="upd",
       route=["布拉格"],
       intro=["布拉格景點集中，很適合連泊慢慢逛。城市主要分為城堡區、小城區、猶太區與新、舊城區，今天專心看城堡區。"],
       stops=[("p-castle", ""), ("p-vitus", "門票已含"), ("p-golden", "門票已含"), ("p-oldtownsq", "")],
+      extra=["晚上回到老城附近，想吃煙囪捲或冰淇淋，見[[p-prague-picks|布拉格口袋名單]]。"],
       meals=[("早", "飯店內早餐"), ("午", "布拉格「米其林」推薦餐＋酒水"), ("晚", "旅遊書推薦必吃 捷克料理＋酒水")],
       hotel=("Hotel KINGS COURT Prague", "連泊第二晚。")),
  dict(n=10, date="10/20", wd="二", city="布拉格", theme="伏爾塔瓦河遊船・高堡・自由活動",
       route=["布拉格"],
       timeline=[("上午", "[[p-vltava|伏爾塔瓦河遊船]]・[[p-vysehrad|高堡]]・搭[[p-tram|有軌電車]]沿河看景・漫步到[[p-dancing|跳舞的房子]]", False),
                 ("中午", "午餐：中式懷鄉料理（八菜一湯）", False),
-                ("14:30 起", "自由活動。公司提供 24 小時電車地鐵票。想去[[p-parizska|巴黎街精品街]]逛 Celine・[[https://www.google.com/maps/search/?api=1&query=CELINE+Prague%2C+Pa%C5%99%C3%AD%C5%BEsk%C3%A1+15%2C+Praha+1|Google 地圖 ↗]]", True),
+                ("14:30 起", "自由活動。公司提供 24 小時電車地鐵票。想去[[p-parizska|巴黎街精品街]]逛 Celine・[[https://www.google.com/maps/search/?api=1&query=CELINE+Prague%2C+Pa%C5%99%C3%AD%C5%BEsk%C3%A1+15%2C+Praha+1|Google 地圖 ↗]]。煙囪捲、冰淇淋、伴手禮店見[[p-prague-picks|布拉格口袋名單]]", True),
                 ("18:00", "[[p-imperial|帝國咖啡館]]晚餐（6 位，已訂位）・[[h-imperial|設施介紹]]・[[https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+Imperial%2C+Na+Po%C5%99%C3%AD%C4%8D%C3%AD+15%2C+Praha+1|Google 地圖 ↗]]", True)],
       stops=[("p-vltava", "船票已含"), ("p-vysehrad", ""), ("p-tram", "特別安排"), ("p-klementinum", "電車沿途"), ("p-narodni", "電車沿途"), ("p-dancing", ""),
-             ("p-parizska", "想去 Celine"), ("p-imperial", "18:00 已訂位")],
+             ("p-parizska", "想去 Celine"), ("p-prague-picks", "煙囪捲・冰淇淋"), ("p-imperial", "18:00 已訂位")],
       meals=[("早", "飯店內早餐"), ("午", "中式懷鄉料理（八菜一湯）"), ("晚", "自理：[[p-imperial|帝國咖啡館]] 18:00（6 位已訂位）", "Café Imperial")],
       hotel=("Hotel KINGS COURT Prague", "連泊第三晚。帝國咖啡館離飯店步行約 5 分鐘。")),
  dict(n=11, date="10/21", wd="三", city="布拉格 → 台北", theme="早班機返台", status="upd",
@@ -234,6 +236,7 @@ def gsearch_url(q):
     return "https://www.google.com/maps/search/?api=1&query=" + quote_plus(q)
 
 MARKET_PAGE = {m["key"]: mid for mid, m in MARKETS.items()}
+HOTEL_LL = {m["key"]: m["hotel_ll"] for m in MARKETS.values() if m["hotel_ll"]}
 
 def hotel_links(key, label="飯店設施 ›"):
     mkt = f'<a class="h-mkt" href="#{MARKET_PAGE[key]}">附近超市 ›</a>' if key in MARKET_PAGE else ""
@@ -455,6 +458,14 @@ def render_place(pid):
     if links:
         o.append('<p class="extlinks">' + "".join(
             f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(t)} ↗</a>' for t, u in links) + '</p>')
+    if p.get("pins"):
+        key = p["hotel"]
+        hll = HOTEL_LL[key]
+        pins = p["pins"]
+        for i, s in enumerate(pins):
+            s["no"], s["d"] = i + 1, dist_m(hll, s["ll"])
+        o.append(pin_map(hll, gmap(key), HOTEL_ZH[key], pins, None, p.get("landmarks", ())))
+        o.append('<section class="pl-s"><h2>店家</h2>' + store_cards(pins, None, HOTEL_Q[key]) + '</section>')
     for head, items in p["sections"]:
         o.append(f'<section class="pl-s"><h2>{esc(head)}</h2>')
         in_list = False
@@ -566,8 +577,17 @@ def week_text(hours):
         i = j + 1
     return "・".join(out)
 
-def market_map(m, stores, near):
-    pts = [m["hotel_ll"]] + [s["ll"] for s in stores if s.get("ll")]
+CAT_LABEL = {"": "超市", "conv": "便利商店・小店", "sweet": "甜點", "souv": "伴手禮"}
+
+def cat_cls(s):
+    return s.get("cat", "")
+
+def mk_no_cls(s):
+    return ("mk-no " + cat_cls(s)).strip()
+
+def pin_map(anchor_ll, anchor_href, anchor_name, stores, near, landmarks=()):
+    """OpenStreetMap 底圖上的飯店（宿）與店家編號；landmarks 是 (座標, 文字) 的參考點。"""
+    pts = [anchor_ll] + [s["ll"] for s in stores if s.get("ll")] + [ll for ll, _ in landmarks]
     for z in range(17, 11, -1):
         xy = [merc(a, b, z) for a, b in pts]
         xs, ys = [p[0] for p in xy], [p[1] for p in xy]
@@ -585,22 +605,51 @@ def market_map(m, stores, near):
     def pos(ll):
         x, y = merc(*ll, z)
         return f"left:{(x - ox) / W * 100:.2f}%;top:{(y - oy) / H * 100:.2f}%"
+    for ll, text in landmarks:
+        o.append(f'<span class="mk-lm" style="{pos(ll)}"><span>{esc(text)}</span></span>')
     for s in stores:
         if s.get("ll"):
-            cls = "mk-pin" + (" conv" if s.get("cat") == "conv" else "") + (" near" if s is near else "")
+            cls = " ".join(c for c in ("mk-pin", cat_cls(s), "near" if s is near else "") if c)
             o.append(f'<a class="{cls}" style="{pos(s["ll"])}" href="{esc(gsearch_url(s["q"]))}" target="_blank" rel="noopener" '
                      f'aria-label="{s["no"]} {esc(s["name"])}">{s["no"]}</a>')
-    o.append(f'<a class="mk-pin hotel" style="{pos(m["hotel_ll"])}" href="{esc(gmap(m["key"]))}" target="_blank" rel="noopener" '
-             f'aria-label="飯店：{esc(HOTEL_ZH[m["key"]])}">宿</a>')
-    mpp = 156543.03392 * math.cos(math.radians(m["hotel_ll"][0])) / 2 ** z
+    o.append(f'<a class="mk-pin hotel" style="{pos(anchor_ll)}" href="{esc(anchor_href)}" target="_blank" rel="noopener" '
+             f'aria-label="飯店：{esc(anchor_name)}">宿</a>')
+    mpp = 156543.03392 * math.cos(math.radians(anchor_ll[0])) / 2 ** z
     nice = max((n for n in (50, 100, 200, 250, 500, 1000, 2000) if n / mpp <= 130), default=50)
     label = f"{nice // 1000} km" if nice >= 1000 else f"{nice} m"
     o.append(f'<span class="mk-scale" style="width:{nice / mpp / W * 100:.2f}%">{label}</span>')
     o.append('<a class="mk-attr" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>')
-    conv_lg = '　<span class="mk-lg conv">1</span>便利商店・小店' if any(s.get("ll") and s.get("cat") == "conv" for s in stores) else ""
+    cats = []
+    for s in stores:
+        if s.get("ll") and cat_cls(s) not in cats:
+            cats.append(cat_cls(s))
+    lg = "".join(f'　<span class="{("mk-lg " + c).strip()}">1</span>{CAT_LABEL[c]}' for c in cats)
     near_lg = '　<span class="mk-lg near">1</span>離飯店最近' if near and near.get("ll") else ""
-    o.append('</div><figcaption><span class="mk-lg hotel">宿</span>飯店　<span class="mk-lg">1</span>超市'
-             f'{conv_lg}{near_lg}　點數字開 Google 地圖</figcaption></figure>')
+    o.append(f'</div><figcaption><span class="mk-lg hotel">宿</span>飯店{lg}{near_lg}　點數字開 Google 地圖</figcaption></figure>')
+    return "".join(o)
+
+def market_map(m, stores, near):
+    return pin_map(m["hotel_ll"], gmap(m["key"]), HOTEL_ZH[m["key"]], stores, near)
+
+def store_cards(stores, near, origin_q):
+    """店家卡片：名稱、地址、距離、營業時間、說明、地圖與路線連結。"""
+    o = ['<ol class="mk-list">']
+    for s in stores:
+        badge = '<span class="mk-near">離飯店最近</span>' if s is near else ""
+        where = dist_text(s["d"]) if s.get("d") is not None else s.get("where", "")
+        dest_mode = "walking" if s.get("d") is not None or s.get("near") else "driving"
+        hours = s.get("hours_text") or week_text(s["hours"])
+        note = f'<p class="mk-note">{rich(s["note"])}</p>' if s.get("note") else ""
+        o.append(f'<li class="mk-store{" near" if s is near else ""}">'
+                 f'<p class="mk-h"><span class="{mk_no_cls(s)}">{s["no"]}</span><b>{esc(s["name"])}</b><span class="mk-kind">{esc(s["kind"])}</span>{badge}</p>'
+                 f'<p class="mk-meta">{esc(s["addr"])}</p>'
+                 f'<p class="mk-meta mk-dist">{esc(where)}</p>'
+                 f'<p class="mk-meta">{esc(hours)}</p>{note}'
+                 f'<span class="h-links"><a class="h-map" href="{esc(gsearch_url(s["q"]))}" target="_blank" rel="noopener">地圖 ↗</a>'
+                 f'<a class="h-map" href="{esc(gdir_url(origin_q, s["q"], dest_mode))}" target="_blank" rel="noopener">從飯店的路線 ↗</a></span></li>')
+    o.append('</ol>')
+    if any(s.get("d") is not None for s in stores):
+        o.append('<p class="fine">走路時間用直線距離估算，實際以 Google 地圖路線為準。</p>')
     return "".join(o)
 
 def pl_sections(sections):
@@ -610,9 +659,6 @@ def pl_sections(sections):
         o.extend(f'<li><b>{rich(k)}</b><span>{rich(v)}</span></li>' for k, v in items)
         o.append('</ul></section>')
     return "".join(o)
-
-def mk_no_cls(s):
-    return "mk-no conv" if s.get("cat") == "conv" else "mk-no"
 
 def render_market(mid):
     m = MARKETS[mid]
@@ -652,23 +698,7 @@ def render_market(mid):
              f'<div class="mk-hrs"><table><thead><tr><th>店家</th>{head}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
              '<p class="fine">查自各店官網與商家目錄，臨時異動以現場為準。</p></section>')
     # 店家
-    o.append('<section class="pl-s"><h2>店家</h2><ol class="mk-list">')
-    for s in stores:
-        badge = '<span class="mk-near">離飯店最近</span>' if s is near else ""
-        where = dist_text(s["d"]) if s["d"] is not None else s.get("where", "")
-        dest_mode = "walking" if s["d"] is not None or s.get("near") else "driving"
-        note = f'<p class="mk-note">{rich(s["note"])}</p>' if s.get("note") else ""
-        o.append(f'<li class="mk-store{" near" if s is near else ""}">'
-                 f'<p class="mk-h"><span class="{mk_no_cls(s)}">{s["no"]}</span><b>{esc(s["name"])}</b><span class="mk-kind">{esc(s["kind"])}</span>{badge}</p>'
-                 f'<p class="mk-meta">{esc(s["addr"])}</p>'
-                 f'<p class="mk-meta mk-dist">{esc(where)}</p>'
-                 f'<p class="mk-meta">{esc(week_text(s["hours"]))}</p>{note}'
-                 f'<span class="h-links"><a class="h-map" href="{esc(gsearch_url(s["q"]))}" target="_blank" rel="noopener">地圖 ↗</a>'
-                 f'<a class="h-map" href="{esc(gdir_url(HOTEL_Q[key], s["q"], dest_mode))}" target="_blank" rel="noopener">從飯店的路線 ↗</a></span></li>')
-    o.append('</ol>')
-    if any(s["d"] is not None for s in stores):
-        o.append('<p class="fine">走路時間用直線距離估算，實際以 Google 地圖路線為準。</p>')
-    o.append('</section>')
+    o.append('<section class="pl-s"><h2>店家</h2>' + store_cards(stores, near, HOTEL_Q[key]) + '</section>')
     if m.get("tips"):
         o.append(pl_sections([("小提醒", m["tips"])]))
     o.append(f'<p class="pl-foot"><a href="#d{day}">回到 Day {day} 行程</a>・<a href="#{HOTEL_PAGE[key]}">飯店介紹</a>・<a href="#m-markets">奧捷超市總覽</a></p>')

@@ -784,5 +784,46 @@ P("p-parizska", region="prague", city="布拉格", name="巴黎街精品街", or
       ("卡夫卡雕像", "西班牙猶太會堂旁，卡夫卡騎在一套沒有頭的空西裝肩上，靈感來自他的短篇〈一場戰鬥紀實〉，2003 年由雕塑家雅羅斯拉夫・羅納製作。・[[https://www.google.com/maps/search/?api=1&query=Franz+Kafka+statue%2C+Du%C5%A1n%C3%AD%2C+Praha|地圖 ↗]]"),
       ("河對岸的節拍器", "站在巴黎街盡頭往河對岸看，萊特納公園山上有一座巨大的節拍器。那裡原本是歐洲最大的史達林雕像，1962 年被炸毀。")),
     S("怎麼安排",
-      "10/20 下午 14:30 自由活動開始後，可以先逛巴黎街和猶太區，再到舊城廣場一帶走走。從巴黎街走到[[p-imperial|帝國咖啡館]]約 15 分鐘，18:00 前到就好。"),
+      "10/20 下午 14:30 自由活動開始後，可以先逛巴黎街和猶太區，再到舊城廣場一帶走走，想吃的煙囪捲和冰淇淋見[[p-prague-picks|布拉格口袋名單]]。從巴黎街走到[[p-imperial|帝國咖啡館]]約 15 分鐘，18:00 前到就好。"),
+  ])
+
+# ───────────────────────── 布拉格口袋名單 ─────────────────────────
+# 使用者在 Google 地圖標星號的店。座標由使用者的地圖截圖換算，用帝國咖啡館、火藥塔、共產主義博物館、
+# 天文鐘、泰恩教堂校正，誤差約 10 公尺。pins 會畫成地圖和店家卡片（與超市頁同一套版面）。
+P("p-prague-picks", region="prague", city="布拉格", name="布拉格口袋名單", orig="Trdelník・Gelato・Souvenir", mark="◆",
+  badges=["10/20 自由活動", "你在 Google 地圖標的店"],
+  short="煙囪捲、冰淇淋、伴手禮店",
+  lede="你在 Google 地圖標星號的四家店：兩家煙囪捲、一家義式冰淇淋、一家伴手禮店，都在老城廣場往南到 Můstek 之間，可以排成一條順路的路線。",
+  hotel="Hotel KINGS COURT Prague",
+  landmarks=[((50.08748, 14.42133), "老城廣場")],
+  pins=[
+    dict(name="Staroměstský trdelník", kind="煙囪捲", cat="sweet", q="Staroměstský trdelník, Praha",
+         addr="老城廣場西側，聖尼古拉教堂和舊市政廳之間", ll=(50.08756, 14.41984),
+         hours_text="營業時間查不到，以現場為準",
+         note="就在老城廣場上，看完天文鐘走 1–2 分鐘。"),
+    dict(name="Old Prague Souvenir Shop", kind="伴手禮店", cat="souv", q="Old Prague Souvenir Shop, Melantrichova 464, Praha",
+         addr="Melantrichova 464（老城廣場往南的小街）", ll=(50.08556, 14.42075),
+         hours_text="各網站寫的時間不一樣，以現場為準",
+         note="賣提線木偶、波希米亞水晶、陶瓷和冰箱貼。評論說老闆親切，在觀光區價格算公道。"),
+    dict(name="Angelato", kind="義式冰淇淋", cat="sweet", q="Angelato, Rytířská 27, Praha",
+         addr="Rytířská 27（靠近 Můstek）", ll=(50.08486, 14.42183),
+         hours_text="旅遊網站寫每天 11:00–22:00；同品牌另一家店 10 月只開到 20:00，以現場為準",
+         note="旅遊指南常推薦的義式冰淇淋店。"),
+    dict(name="Staropražské tradiční Trdlo", kind="煙囪捲", cat="sweet", q="Staropražské tradiční Trdlo, Na Příkopě, Praha",
+         addr="Na Příkopě 一帶（靠近 Můstek）", ll=(50.08487, 14.42413),
+         hours_text="連鎖店，各分店時間不同，以現場為準",
+         note="布拉格的連鎖煙囪捲店，[[https://trdlo.com/en/|官網]]說照老配方手工做。口味有香草奶油加草莓、蘋果肉桂、冰淇淋加巧克力，評論常推開心果口味。"),
+  ],
+  sections=[
+    S("怎麼排",
+      "Day 10 下午 14:30 起自由活動，18:00 在帝國咖啡館吃晚餐，中間可以這樣走：",
+      ("1. 老城廣場", "先吃 Staroměstský trdelník。想去[[p-parizska|巴黎街]]逛 Celine，就先去巴黎街再回到廣場。"),
+      ("2. Melantrichova", "從廣場往南走這條小街，逛 Old Prague Souvenir Shop。"),
+      ("3. Rytířská", "從伴手禮店往東南走約 2 分鐘，到 Angelato 吃冰淇淋。"),
+      ("4. Na Příkopě", "再吃 Staropražské 的煙囪捲，或兩家煙囪捲選一家就好。"),
+      ("5. 帝國咖啡館", "沿 Na Příkopě 往東走到共和廣場，再走約 5 分鐘到[[p-imperial|帝國咖啡館]]。"),
+      "整條路線直線距離加起來約 2 公里，不算逛街大約走 30–40 分鐘。"),
+    S("煙囪捲小知識",
+      "煙囪捲（trdelník）在布拉格常被說成「波希米亞傳統點心」，其實源自匈牙利王國北部。斯洛伐克 Skalica 的煙囪捲在 2007 年取得歐盟地理標示保護；布拉格大約是 2000 年代初才在觀光區流行起來。",
+      "現烤的最好吃，趁熱吃。加冰淇淋或其他配料會比較貴，點之前先看價目表。"),
   ])

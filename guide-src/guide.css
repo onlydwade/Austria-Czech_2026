@@ -302,6 +302,10 @@ p{margin:0}
 .mk-lg{display:inline-grid;place-items:center;width:18px;height:18px;margin-right:3px;border-radius:50%;background:#1E6878;color:#fff;font-size:.66rem;font-weight:700}
 .mk-lg.hotel{background:#962437}
 .mk-lg.conv,.mk-no.conv{background:#B4570F}
+.mk-pin.sweet,.mk-lg.sweet,.mk-no.sweet{background:#B03A6E}
+.mk-pin.souv,.mk-lg.souv,.mk-no.souv{background:#5B4B9A}
+.mk-lm{position:absolute;z-index:1;box-sizing:border-box;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#18202C;border:2px solid #fff}
+.mk-lm span{position:absolute;left:12px;top:50%;transform:translateY(-50%);padding:1px 5px;border-radius:4px;background:rgba(255,255,255,.85);color:#18202C;font:700 .72rem/1.2 var(--f-body);white-space:nowrap}
 .mk-lg.near{box-shadow:0 0 0 2px #C8960C}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .mk-canvas img{filter:brightness(.82)}}
 :root[data-theme="dark"] .mk-canvas img{filter:brightness(.82)}
