@@ -11,7 +11,7 @@
    - `content_shops.py`：伴手禮門市頁，`SH("s-xxx", ...)`。
    - `content_gifts.py`：伴手禮清單、照天數買、帶回台灣注意事項。
    - `content_maps.py`：景點頁的 Google 地圖搜尋字串、車程日路線，以及每日天氣預報的地點 `WX_LOCS` / `DAY_WX`。預報由 `guide.js` 在手機上向 Open-Meteo 抓（免金鑰、快取 2 小時），只有出發前約兩週內才有資料。
-   - `content_markets.py`：超市頁。`M("m-xxx", ...)` 是各飯店附近的超市（座標、營業時間、我們在那裡的日期），`OVERVIEW` 是奧捷超市總覽 `m-markets`。飯店旁的「附近超市」按鈕依 `key` 自動出現。地圖底圖是 OpenStreetMap 圖磚，沒有可靠座標的店 `ll=None`，不畫在地圖上。
+   - `content_markets.py`：超市頁。`M("m-xxx", ...)` 是各飯店附近的超市（座標、營業時間、我們在那裡的日期），`OVERVIEW` 是奧捷超市總覽 `m-markets`。飯店旁的「附近超市」按鈕依 `key` 自動出現。地圖底圖是 OpenStreetMap 圖磚，沒有可靠座標的店 `ll=None`，不畫在地圖上。便利商店和個人經營的小店加 `cat="conv"`，地圖上用橘色標記。
    - `guide.css`、`guide.js`：樣式與互動。
    - 網頁圖示在根目錄：`favicon.png`（192×192）、`apple-touch-icon.png`（180×180，iPhone 加入主畫面用），是使用者的貓咪照片裁成正方形。
 2. 產生網頁：`python guide-src/build_guide.py`（Python 3.8 以上）。會寫出 `index.html`（GitHub Pages 用）和 `austria-czech-guide.html`（Claude Artifact 用，已在 .gitignore）。

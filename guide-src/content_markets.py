@@ -36,6 +36,7 @@ M("m-vienna", key="InterContinental Vienna", city="維也納", country="at", day
          note="Wien Mitte 車站的購物中心，有兩層樓的大型 INTERSPAR。旁邊的 INTERSPAR-pronto 是小型店，每天 06:00–23:00、週日也開，是晚上最可靠的選擇。穿過市立公園就到。"),
   ],
   tips=[
+    ("便利商店", "奧地利沒有台灣那種到處都有的便利商店。晚上 20:00 以後或週日，去 Wien Mitte 車站的 INTERSPAR-pronto。"),
     ("寶特瓶有押金", "2025 年起奧地利的寶特瓶和鋁罐有押金，每個 €0.25。喝完可以拿回超市的回收機退。"),
     ("想買伴手禮", "Manner 威化餅、紅金色包裝的 Mirabell 莫札特巧克力，BILLA、SPAR 都有，比專賣店便宜。"),
   ])
@@ -61,19 +62,19 @@ M("m-krumlov", key="Hotel Zlatý Anděl", city="庫倫洛夫", country="cz", day
   when="週五晚上到、週六早上走。主廣場上的食品店開到 22:00。",
   lede="飯店就在老城主廣場上，同一個廣場就有一家食品店，開到 22:00，晚上回飯店後通常還來得及買水。大一點的超市在老城外面。",
   stores=[
-    dict(name="Market náměstí Svornosti", kind="食品店", q="Market, náměstí Svornosti 7, Český Krumlov", near=True, addr="náměstí Svornosti 7（主廣場 7 號）", ll=None,
+    dict(name="Market náměstí Svornosti", kind="食品小店", cat="conv", q="Market, náměstí Svornosti 7, Český Krumlov", near=True, addr="náměstí Svornosti 7（主廣場 7 號）", ll=None,
          where="同一個廣場，走路 1 分鐘",
          hours=wk("09:00–22:00", "09:00–22:00", "09:00–22:00"),
-         note="就在飯店所在的主廣場上，買水、飲料、零食最近。地圖上沒有另外標出。"),
-    dict(name="Happy potraviny", kind="食品雜貨店", q="Happy potraviny, Na Ostrově 87, Český Krumlov", addr="Na Ostrově 87", ll=(48.8119, 14.31413),
+         note="就在飯店所在的主廣場上，買水、飲料、零食最近。個人經營的小店，觀光區價格通常比超市高。地圖上沒有另外標出。"),
+    dict(name="Happy potraviny", kind="食品雜貨店（potraviny）", cat="conv", q="Happy potraviny, Na Ostrově 87, Český Krumlov", addr="Na Ostrově 87", ll=(48.8119, 14.31413),
          hours=wk("10:00–23:00", "10:00–24:00", "10:00–22:00"),
-         note="小型食品雜貨店（potraviny），開得很晚，在主廣場西北邊，靠近市立軍械庫（Městská zbrojnice）。"),
+         note="個人經營的食品雜貨店，開得很晚，在主廣場西北邊，靠近市立軍械庫（Městská zbrojnice）。價格先看清楚再結帳。"),
     dict(name="PENNY", kind="折扣超市", q="PENNY, 5. května 418, Český Krumlov", addr="5. května 418（Plešivec）", ll=(48.80332, 14.31367),
          hours=wk("07:00–20:00", "07:00–20:00", "07:00–20:00"),
          note="老城南邊 Plešivec 區的連鎖超市，東西多又便宜，但離老城比較遠。"),
   ],
   tips=[
-    ("老城裡的小店", "老城觀光區的小店價格通常比超市高，想大量買飲料或零食，PENNY 比較划算。"),
+    ("老城裡的小店", "上面兩家都是個人經營的小店，應急買水、零食很方便，但老城觀光區的價格通常比超市高。想大量買飲料或零食，PENNY 比較划算。"),
   ])
 
 M("m-marienbad", key="Luxury Historical Castle Hotel & Golf", city="瑪麗安斯凱", country="cz", day=7,
@@ -103,7 +104,7 @@ M("m-prague", key="Hotel KINGS COURT Prague", city="布拉格", country="cz", da
   hotel_ll=(50.08832, 14.42810),
   dates=[("10/18", 6), ("10/19", 0), ("10/20", 1)],
   when="週日到週二。捷克週日照開，飯店對面的 Albert 每天 07:00–22:00。",
-  lede="飯店在共和廣場旁，對面 Palladium 購物中心地下就有 Albert 超市，每天 07:00–22:00。再晚一點，走路 2 分鐘的 BILLA 開到 23:00。捷克的超市週日照常營業，10/18 抵達當天也買得到。",
+  lede="飯店在共和廣場旁，對面 Palladium 購物中心地下就有 Albert 超市，每天 07:00–22:00。再晚一點，走路 2 分鐘的 BILLA 開到 23:00，半夜還有舊城的小店。捷克的超市週日照常營業，10/18 抵達當天也買得到。",
   stores=[
     dict(name="Albert（Palladium）", kind="超市", q="Albert, Palladium, náměstí Republiky 1, Praha", addr="náměstí Republiky 1，Palladium 購物中心地下 2 樓", ll=(50.08972, 14.42794),
          hours=wk("07:00–22:00", "07:00–22:00", "07:00–22:00"),
@@ -111,11 +112,16 @@ M("m-prague", key="Hotel KINGS COURT Prague", city="布拉格", country="cz", da
     dict(name="BILLA（V Celnici）", kind="超市", q="BILLA, V Celnici 1031/4, Praha", addr="V Celnici 1031/4（共產主義博物館旁）", ll=(50.08785, 14.43001),
          hours=wk("07:00–23:00", "07:00–23:00", "08:00–23:00"),
          note="入口在共產主義博物館旁邊，開到 23:00，是附近最晚打烊的大超市。"),
-    dict(name="Žabka", kind="便利商店", q="Žabka, Na Poříčí 35, Praha", addr="Na Poříčí 35", ll=(50.09032, 14.43564),
+    dict(name="Žabka", kind="連鎖便利商店", cat="conv", q="Žabka, Na Poříčí 35, Praha", addr="Na Poříčí 35", ll=(50.09032, 14.43564),
          hours=wk("06:00–22:00", "06:00–22:00", "06:00–22:00"),
-         note="波蘭來的連鎖便利商店，布拉格到處都有，賣飲料、零食、即食品和酒。這家在 Na Poříčí 街上，往 Florenc 方向。"),
+         note="波蘭來的連鎖便利商店，布拉格到處都有，賣飲料、零食、即食品和酒。連鎖店價格統一，比個人小店放心。這家在 Na Poříčí 街上，往 Florenc 方向。"),
+    dict(name="Market KLTT", kind="小型商店（minimarket）", cat="conv", q="50.08815,14.42544",
+         addr="舊城聖雅各教堂（Kostel sv. Jakuba）附近", ll=(50.08815, 14.42544),
+         hours=wk("10:00–02:00", "10:00–02:00", "10:00–02:00"),
+         note="個人經營的 minimarket，開到半夜 2 點，23:00 超市都關了以後還能買水和零食。資料來自 OpenStreetMap，店名和時間可能已經改變。觀光區小店常比超市貴，先看價格再結帳。"),
   ],
   tips=[
+    ("舊城的小店", "Minimarket、Potraviny 這類個人小店很多開到很晚，應急可以。但市中心觀光區有些店對觀光客開高價、商品不標價，先看價格、結帳看清楚金額。大量採買去 Albert、BILLA 或 Žabka。"),
     ("Kotva 百貨整修中", "共和廣場的 Kotva 百貨關閉整修，預計 2027 年重新開幕，裡面的 Albert 也沒開。舊的旅遊資料還會寫到它，不用特地過去。"),
     ("超市伴手禮", "溫泉薄餅、Studentská 巧克力、Becherovka 藥草酒、啤酒，捷克的超市一般都買得到。"),
   ])
@@ -134,10 +140,15 @@ OVERVIEW = dict(
   czech=[
     ("Albert、BILLA", "最常見的兩家連鎖超市。Albert 屬於 Ahold Delhaize 集團。"),
     ("Lidl、Kaufland、PENNY", "折扣超市和大賣場，常開在市區外圍。"),
-    ("Žabka", "波蘭來的連鎖便利商店，店面約 50–100 m²，布拉格很多。"),
-    ("Potraviny、Večerka", "街角的食品雜貨店，很多開到很晚，價格比超市高一點。"),
     ("營業時間", "週日照常營業，市中心的大超市多半 07:00–22:00 或更晚。"),
     ("國定假日", "200 m² 以上的店在 1/1、復活節星期一、5/8、9/28、10/28、12/25–26 不能營業，12/24 中午後也要關。這趟都碰不到。"),
+  ],
+  conv=[
+    ("奧地利", "沒有台灣那種到處都有的連鎖便利商店。晚上和週日找大車站裡的超市，例如維也納 Wien Mitte 車站的 INTERSPAR-pronto（每天 06:00–23:00）。"),
+    ("Žabka（捷克）", "波蘭來的連鎖便利商店，店面約 50–100 m²，布拉格很多。連鎖店價格統一，買水、零食、即食品最放心。"),
+    ("Potraviny、Večerka、Minimarket", "個人經營的食品雜貨店，常開到很晚，應急買水、零食很方便，但價格通常比超市高。"),
+    ("要小心", "布拉格市中心觀光區有些小店對觀光客開高價：商品沒標價、到櫃台才報價的要小心，也有影片實測講英文比講捷克文貴。先看價格標籤，結帳時看清楚金額再付款。"),
+    ("適合去嗎", "晚上超市關了、只想買瓶水或零食，可以去。伴手禮和大量採買，還是去 Albert、BILLA 或 Žabka。"),
   ],
   general=[
     ("購物袋", "結帳時要另外買，自備環保袋最方便。"),

@@ -587,7 +587,7 @@ def market_map(m, stores, near):
         return f"left:{(x - ox) / W * 100:.2f}%;top:{(y - oy) / H * 100:.2f}%"
     for s in stores:
         if s.get("ll"):
-            cls = "mk-pin near" if s is near else "mk-pin"
+            cls = "mk-pin" + (" conv" if s.get("cat") == "conv" else "") + (" near" if s is near else "")
             o.append(f'<a class="{cls}" style="{pos(s["ll"])}" href="{esc(gsearch_url(s["q"]))}" target="_blank" rel="noopener" '
                      f'aria-label="{s["no"]} {esc(s["name"])}">{s["no"]}</a>')
     o.append(f'<a class="mk-pin hotel" style="{pos(m["hotel_ll"])}" href="{esc(gmap(m["key"]))}" target="_blank" rel="noopener" '
@@ -597,9 +597,10 @@ def market_map(m, stores, near):
     label = f"{nice // 1000} km" if nice >= 1000 else f"{nice} m"
     o.append(f'<span class="mk-scale" style="width:{nice / mpp / W * 100:.2f}%">{label}</span>')
     o.append('<a class="mk-attr" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>')
+    conv_lg = '　<span class="mk-lg conv">1</span>便利商店・小店' if any(s.get("ll") and s.get("cat") == "conv" for s in stores) else ""
     near_lg = '　<span class="mk-lg near">1</span>離飯店最近' if near and near.get("ll") else ""
-    o.append('</div><figcaption><span class="mk-lg hotel">宿</span>飯店　<span class="mk-lg">1</span>店家，點了開 Google 地圖'
-             f'{near_lg}</figcaption></figure>')
+    o.append('</div><figcaption><span class="mk-lg hotel">宿</span>飯店　<span class="mk-lg">1</span>超市'
+             f'{conv_lg}{near_lg}　點數字開 Google 地圖</figcaption></figure>')
     return "".join(o)
 
 def pl_sections(sections):
@@ -609,6 +610,9 @@ def pl_sections(sections):
         o.extend(f'<li><b>{rich(k)}</b><span>{rich(v)}</span></li>' for k, v in items)
         o.append('</ul></section>')
     return "".join(o)
+
+def mk_no_cls(s):
+    return "mk-no conv" if s.get("cat") == "conv" else "mk-no"
 
 def render_market(mid):
     m = MARKETS[mid]
@@ -643,7 +647,7 @@ def render_market(mid):
         for _, w in m["dates"]:
             h = s["hours"][w]
             cells.append('<td class="closed">公休</td>' if h is None else f'<td>{"<br>".join(esc(x).replace("–", "–<wbr>") for x in h.split("・"))}</td>')
-        rows.append(f'<tr><th scope="row"><span class="mk-no">{s["no"]}</span>{esc(s["name"])}</th>{"".join(cells)}</tr>')
+        rows.append(f'<tr><th scope="row"><span class="{mk_no_cls(s)}">{s["no"]}</span>{esc(s["name"])}</th>{"".join(cells)}</tr>')
     o.append('<section class="pl-s"><h2>這幾天的營業時間</h2>'
              f'<div class="mk-hrs"><table><thead><tr><th>店家</th>{head}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>'
              '<p class="fine">查自各店官網與商家目錄，臨時異動以現場為準。</p></section>')
@@ -655,7 +659,7 @@ def render_market(mid):
         dest_mode = "walking" if s["d"] is not None or s.get("near") else "driving"
         note = f'<p class="mk-note">{rich(s["note"])}</p>' if s.get("note") else ""
         o.append(f'<li class="mk-store{" near" if s is near else ""}">'
-                 f'<p class="mk-h"><span class="mk-no">{s["no"]}</span><b>{esc(s["name"])}</b><span class="mk-kind">{esc(s["kind"])}</span>{badge}</p>'
+                 f'<p class="mk-h"><span class="{mk_no_cls(s)}">{s["no"]}</span><b>{esc(s["name"])}</b><span class="mk-kind">{esc(s["kind"])}</span>{badge}</p>'
                  f'<p class="mk-meta">{esc(s["addr"])}</p>'
                  f'<p class="mk-meta mk-dist">{esc(where)}</p>'
                  f'<p class="mk-meta">{esc(week_text(s["hours"]))}</p>{note}'
@@ -687,7 +691,8 @@ def render_market_overview():
         for mid, m in MARKETS.items())
     o.append(f'<section class="pl-s"><h2>我們去的時候</h2><div class="plan"><table><tbody>{rows}</tbody></table></div>'
              '<p class="fine">點城市名稱，看飯店附近的超市、地圖和這幾天的營業時間。</p></section>')
-    o.append(pl_sections([("奧地利的超市", v["austria"]), ("捷克的超市", v["czech"]), ("買東西小提醒", v["general"])]))
+    o.append(pl_sections([("奧地利的超市", v["austria"]), ("捷克的超市", v["czech"]),
+                          ("便利商店和小店：適合去嗎？", v["conv"]), ("買東西小提醒", v["general"])]))
     links = "".join(f'<li><b><a class="xref" href="#{mid}">{esc(m["city"])}</a></b><span>{esc(HOTEL_ZH[m["key"]])}</span></li>'
                     for mid, m in MARKETS.items())
     o.append(f'<section class="pl-s"><h2>各飯店附近的超市</h2><ul class="facts">{links}</ul></section>')
