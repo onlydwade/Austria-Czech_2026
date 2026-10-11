@@ -284,8 +284,8 @@ def build():
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             '<title>GR IV 拍照筆記</title>\n<meta name="robots" content="noindex, nofollow">\n'
             '<meta name="theme-color" content="#962437">\n'
-            '<link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">\n'
-            '<link rel="apple-touch-icon" href="../apple-touch-icon.png">\n'
+            '<link rel="icon" type="image/png" sizes="192x192" href="favicon.png">\n'
+            '<link rel="apple-touch-icon" href="apple-touch-icon.png">\n'
             '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
             '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">\n'
             f'<style>{CSS}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n')
