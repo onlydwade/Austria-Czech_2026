@@ -88,12 +88,11 @@ RECIPES = [
     dict(name="正片", en="Positive Film", color="#2F6EA3",
          good="晴天的湖景、藍天、建築、色彩豐富的食物。",
          vals=["+2", "0", "+1", "+1", "−2", "0", "+1", "0", "關"],
-         note="顏色鮮豔、反差高。想要更濃的版本可以參考 Ricoh Recipes 的「Travelog」配方（飽和度 +4、色相 −1、高/低調 +3、亮部對比 −3、暗部對比 +1、加顆粒）。"
-              "・[[https://ricohrecipes.com/2025/10/24/my-ricoh-gr-iv-arrived-first-recipe-test/|Travelog 配方]]"),
+         note="顏色鮮豔、反差高。想要更有底片感，用下面 Ricoh Recipes 的 [[#rr|EktaSlide 或 Travelog]]，一樣是正片底。"),
     dict(name="負片", en="Negative Film", color="#A07A0B",
          good="人像、陰天、老城街景，顏色柔和、膚色好看。",
          vals=["−1", "0", "+1", "0", "−2", "+1", "0", "0", "小・弱"],
-         note="偏淡、偏懷舊。想要高反差的版本，可以參考 RICOH 官方 GR Blog 的自訂負片（飽和度 −2、對比 +3、亮部對比 +4、暗部對比 −4）。"
+         note="偏淡、偏懷舊。想要濃一點、有底片感，用下面的 [[#rr|Pro Color]]。想要高反差的版本，可以參考 RICOH 官方 GR Blog 的自訂負片（飽和度 −2、對比 +3、亮部對比 +4、暗部對比 −4）。"
               "・[[https://www.grblog.jp/en/article/7151/|官方 GR Blog]]"),
     dict(name="電影（黃）", en="Cinema (Yellow)", color="#C8661A",
          good="黃昏、夜景、咖啡館、布拉格的暖色街燈。",
@@ -147,48 +146,49 @@ SCENE_FILTERS = [
 ]
 
 USER_MODES = [
-    ("U1 白天風景", "Av・F8・ISO 自動（上限 1600）・曝光 0・正片・RAW＋JPEG・ND 自動"),
-    ("U2 人像美食", "Av・F2.8・ISO 自動（上限 3200）・曝光 +0.3・負片（美食可改正片）・RAW＋JPEG・ND 自動"),
-    ("U3 夜景室內", "Av・F2.8・ISO 自動（上限 6400）・曝光 −0.3 到 −0.7・電影（黃）・RAW＋JPEG"),
+    ("U1 風景建築", "Av・F8・ISO 自動（上限 1600）・曝光 0 到 −0.3・EktaSlide（自動白平衡）・RAW＋JPEG・ND 自動"),
+    ("U2 人像街景", "Av・F2.8・ISO 自動（上限 3200）・曝光 +0.3・Pro Color（白平衡日光）・RAW＋JPEG・ND 自動。進餐廳或室內黃燈下，白平衡改自動，或改用負片"),
+    ("U3 夜景室內", "Av・F2.8・ISO 自動（上限 6400）・曝光 −0.3 到 −0.7・電影（黃）・自動白平衡・RAW＋JPEG"),
 ]
+U_ALT = "不想用 Ricoh Recipes 的話，U1 換成上面的正片、U2 換成負片，其他設定一樣。"
 
 # 這趟的場景：(標題, 什麼時候, 設定, 濾鏡, 小提醒)
 SCENES = [
     ("湖景：哈斯達特、沃夫岡湖", "[[../#d4|Day 4]]–[[../#d5|5]]",
      "Av F8・ISO 100–400・曝光 −0.3（保住天空和湖面亮部）",
-     "晴天正片；陰天或起霧用電影（綠）",
+     "晴天 EktaSlide 或正片；拍黃葉用 Travelog；陰天或起霧用電影（綠）",
      "壓低一點拍，湖面倒影會比較完整。哈斯達特是居民的家，不要闖進私人庭院或碼頭。"),
     ("鹽礦", "[[../#d5|Day 5]]",
      "Av F2.8・ISO 自動（上限 6400）・快門至少 1/60",
-     "標準或負片",
+     "標準＋自動白平衡（礦裡是黃色燈光）",
      "礦裡很暗，人又一直在走。拍人時讓對方停一下。礦工滑梯會自動測速拍照，滑的時候把相機收好。"),
     ("建築：維也納、薩爾茲堡、布拉格城堡", "[[../#d2|Day 2]]、[[../#d3|3]]、[[../#d6|6]]、[[../#d9|9]]",
      "Av F8・ISO 100–400",
-     "正片；陰天用負片",
+     "EktaSlide 或正片；陰天用負片或 Pro Color",
      "28mm 很廣，靠太近拍高樓會往後倒。退後幾步、相機拿正，或把建築放在畫面中間。梅爾克修道院兩翼之間的觀景平台可以拍多瑙河。"),
     ("教堂、宮殿、圖書館室內", "整趟",
      "Av F2.8・ISO 1600–3200・曝光 0",
-     "標準",
+     "標準＋自動白平衡；想要暖色氣氛用電影（黃）",
      "[[../#d3|熊布朗宮]]室內一般可以拍，但不能開閃光燈、不能用腳架和自拍棒，人多時工作人員可能請你停拍。[[../#d2|梅爾克修道院]]室內（圖書館、博物館）很多遊客回報不能拍，以現場標示為準。音樂會演出時不要拍，散場後再拍音樂廳。"),
     ("老城街景：庫倫洛夫、布拉格", "[[../#d6|Day 6]]、[[../#d8|8]]–[[../#d10|10]]",
      "Av F5.6・快拍對焦 2.5 公尺",
-     "負片或正片",
+     "Pro Color 或負片；晴天也可以用 EktaSlide",
      "快拍對焦不用等對焦，走路時看到畫面就拍。庫倫洛夫可以從城堡往下拍河灣和紅屋頂。"),
     ("夜景：查理大橋、布拉格城堡、舊城廣場", "[[../#d8|Day 8]]–[[../#d10|10]] 晚上",
      "Av F2.8・ISO 1600–3200・曝光 −0.7・靜物快門 1/15 左右",
-     "電影（黃）",
+     "電影（黃）；想玩濃一點用 Lomo Color",
      "曝光往 − 調，燈光才不會過曝成一片白。畫面裡有人時，快門至少 1/60。"),
     ("遊船、巴士窗外、電車", "[[../#d10|Day 10]]，以及每天的車程",
      "Tv 1/500・ISO 自動",
-     "正片",
+     "EktaSlide 或正片",
      "鏡頭貼近玻璃、避開反光；穿深色衣服反光更少。"),
     ("人像：旅伴、合照", "整趟",
      "半身 Av F2.8；合照 Av F5.6–F8・逆光時曝光 +0.7",
-     "負片或標準",
+     "戶外 Pro Color 或負片；室內用標準",
      "靠近拍半身，讓背景離人遠一點。合照時 28mm 很好用，站近一點就塞得下全團。"),
     ("美食：米其林午餐、帝國咖啡館、煙囪捲、冰淇淋", "[[../#d3|Day 3]]、[[../#d9|9]]、[[../#d10|10]]",
      "Av F2.8–F4・曝光 +0.3 到 +0.7・近拍用微距（最近 6 公分）",
-     "正片（顏色鮮豔）或標準（顏色真實）",
+     "正片或 EktaSlide（顏色鮮豔）、標準（顏色真實）。餐廳黃燈下不要用固定白平衡的配方",
      "坐靠窗的位置用自然光，斜 45 度或正上方拍。不要開閃光燈，也不要擋到別桌。"),
 ]
 
@@ -261,6 +261,7 @@ h3.sub-h{font-size:1rem;margin:18px 0 6px;color:var(--river)}
 .kv b{font-variant-numeric:tabular-nums;text-align:right}
 .kv.wide{grid-template-columns:1fr;margin-top:0}
 .kv.wide span{flex:0 0 auto}
+.card.warn{border-left:5px solid #C8661A;margin-bottom:10px}
 .pick{font-size:.72rem;font-weight:700;color:#fff;background:var(--accent);border-radius:99px;padding:1px 8px}
 .fine{font-size:.8rem;color:var(--ink2);margin-top:8px}
 .scene dl{margin:6px 0 0;display:grid;gap:4px}
@@ -276,8 +277,8 @@ def build():
     o = []
     o.append('<header class="top"><p class="eyebrow">RICOH GR IV・奧捷 12 日</p><h1>GR IV 拍照筆記</h1>'
              '<p class="sub">風景、人像、美食都想拍：光圈、快門、ISO 怎麼設，濾鏡怎麼調，這趟每個景點怎麼拍。</p></header>')
-    toc = [("top3", "先記這三個"), ("basics", "光圈快門 ISO"), ("modes", "拍攝模式"), ("recipes", "濾鏡配方"), ("which", "風景・建築・教堂"),
-           ("rr", "Ricoh Recipes"), ("umodes", "U1–U3"), ("scenes", "這趟怎麼拍"), ("camera", "相機功能"), ("check", "出發前")]
+    toc = [("top3", "先記這三個"), ("basics", "光圈快門 ISO"), ("modes", "拍攝模式"), ("recipes", "濾鏡配方"), ("rr", "Ricoh Recipes"),
+           ("which", "風景・建築・教堂"), ("umodes", "U1–U3"), ("scenes", "這趟怎麼拍"), ("camera", "相機功能"), ("check", "出發前")]
     o.append('<nav class="toc" aria-label="目錄"><div class="in">' + "".join(f'<a href="#{i}">{t}</a>' for i, t in toc) + '</div></nav>')
     o.append('<main class="wrap">')
     # 先記這三個
@@ -309,13 +310,6 @@ def build():
                  f'<p><b>適合：</b>{esc(r["good"])}</p><table><tbody>{rows}</tbody></table><p>{rich(r["note"])}</p></div>')
     o.append('</div><p class="fine">表上沒列的參數（暗角 Shading、色調 Toning 等）維持 0。顆粒只有正片、負片、兩種電影和黑白可以加，大小和強度各有三段。'
              '這些效果只套在 JPEG，RAW 不受影響。</p></section>')
-    # 風景、建築、教堂用哪個
-    o.append('<section id="which"><h2>風景、建築、教堂用哪個濾鏡</h2>'
-             '<p class="lead">一句話：晴天戶外用正片類，陰天用電影（綠），室內用標準，晚上用電影（黃）。</p><div class="cards">')
-    for sc, first, alt, tip in SCENE_FILTERS:
-        o.append(f'<div class="card scene"><h3>{esc(sc)}</h3><dl><div><dt>首選</dt><dd><b>{esc(first)}</b></dd></div>'
-                 f'<div><dt>備選</dt><dd>{esc(alt)}</dd></div><div><dt>重點</dt><dd>{esc(tip)}</dd></div></dl></div>')
-    o.append('</div></section>')
     # Ricoh Recipes
     o.append('<section id="rr"><h2>Ricoh Recipes 推薦</h2><p class="lead">' + rich(
         "[[https://ricohrecipes.com/ricoh-gr-iv-recipes/|Ricoh Recipes]] 是攝影部落客 Ritchie Roesch 整理的 GR 配方網站，也有 iOS、Android App。"
@@ -329,17 +323,27 @@ def build():
         o.append(f'<div class="card recipe" style="--rc:{r["color"]}"><h3>{esc(r["name"])}<small>底：{esc(r["base"])}</small>{star}</h3>'
                  f'<p><b>適合：</b>{esc(r["pick"])}</p><p>{esc(r["why"])}</p>'
                  f'<div class="kv">{kv}</div><div class="kv wide">{wide}</div></div>')
-    o.append('</div><div class="card" style="margin-top:10px"><h3>怎麼存進相機</h3>'
-             '<p>1. 影像風格選好「底」，照表調參數。</p>'
-             '<p>2. 按 WB 鍵設白平衡和補償（白平衡不在影像風格裡，要另外設）。</p>'
-             '<p>3. 設好 ISO 上限 6400 和曝光補償，再存進 U1–U3。例如 U1 EktaSlide、U2 Pro Color、U3 電影（黃）。</p>'
-             '<p>4. ISO 上限、曝光補償是作者的習慣，照現場亮暗調。</p></div>'
-             '<p class="fine">數值抄自 Ricoh Recipes 網站，輸入前可以在 App 或網頁再對一次；選單名稱以相機為準。'
+    o.append('</div><p class="fine">數值抄自 Ricoh Recipes 網站，輸入前可以在 App 或網頁再對一次；選單名稱以相機為準。'
              '作者實測 GR III 的配方也能用在 GR IV，但 GR IV 拍起來偏暖、偏亮一點，所以這裡只挑 GR IV 專用的配方。'
              '另外兩個是黑白配方（Panchromatic 400 +Red、Pushed B&W），有興趣可以到網站看。</p></section>')
+    # 風景、建築、教堂用哪個
+    o.append('<section id="which"><h2>風景、建築、教堂用哪個濾鏡</h2>'
+             '<p class="lead">一句話：晴天戶外用正片類，陰天用電影（綠），室內用標準，晚上用電影（黃）。</p>'
+             '<div class="card warn"><h3>最容易踩的雷：白平衡</h3><p>Travelog（陰天）、Pro Color（日光）、Lomo Color（陰影）的白平衡是固定的。'
+             '到教堂、宮殿、餐廳的黃色燈光下，照片會很橘。進室內前把白平衡切回自動，或改用 EktaSlide、標準。</p></div><div class="cards">')
+    for sc, first, alt, tip in SCENE_FILTERS:
+        o.append(f'<div class="card scene"><h3>{esc(sc)}</h3><dl><div><dt>首選</dt><dd><b>{esc(first)}</b></dd></div>'
+                 f'<div><dt>備選</dt><dd>{esc(alt)}</dd></div><div><dt>重點</dt><dd>{esc(tip)}</dd></div></dl></div>')
+    o.append('</div></section>')
     # U1–U3
-    o.append('<section id="umodes"><h2>U1–U3 建議設定</h2><p class="lead">先在 Av 模式把下面的設定調好，再存進 U1–U3，到現場轉一下轉盤就切換。</p><dl class="facts">'
-             + "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in USER_MODES) + '</dl></section>')
+    o.append('<section id="umodes"><h2>U1–U3 建議設定</h2><p class="lead">把最常用的三組存進 U1–U3，到現場轉一下轉盤就切換，不用每次重調。</p><dl class="facts">'
+             + "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in USER_MODES) + '</dl>'
+             f'<p class="fine">{esc(U_ALT)}</p>'
+             '<div class="card" style="margin-top:12px"><h3>怎麼存進相機</h3>'
+             '<p>1. 模式轉盤轉到 Av，設好光圈。</p>'
+             '<p>2. 影像風格選好「底」（正片、負片、電影…），照配方調參數。</p>'
+             '<p>3. 按 WB 鍵設白平衡和補償。白平衡不在影像風格裡，要另外設。</p>'
+             '<p>4. 設好 ISO 上限、曝光補償、RAW＋JPEG，再用選單裡儲存使用者設定的功能存到 U1、U2 或 U3。選單名稱以相機為準。</p></div></section>')
     # 這趟怎麼拍
     o.append('<section id="scenes"><h2>這趟怎麼拍</h2><div class="cards">')
     for t, when, setting, filt, tip in SCENES:
