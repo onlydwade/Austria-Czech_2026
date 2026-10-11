@@ -96,14 +96,16 @@ SH("s-manner", zh="Manner 旗艦店", en="Manner Shop Stephansplatz", eyebrow="�
   ])
 
 SH("s-sacher", zh="薩赫飯店", en="Hotel Sacher Wien・Original Sacher-Torte", eyebrow="伴手禮門市・維也納",
-  badges=["1876 年開幕", "Day 3"],
+  badges=["1876 年開幕", "Day 3", "Day 6 備案"],
   links=[("原版薩赫蛋糕介紹", "https://www.sacher.com/en/original-sacher-torte/"),
          ("常見問題（保存期限）", "https://shop.sacher.com/en/frequently-asked-questions")],
-  lede="原版薩赫蛋糕的家。飯店就在國家歌劇院後面，咖啡館裡的 Sacher Shop 賣木盒包裝的整顆蛋糕和巧克力。",
+  lede="原版薩赫蛋糕的家。飯店就在國家歌劇院後面，轉角的 Sacher Confiserie 門市賣木盒包裝的整顆蛋糕和巧克力。",
   sections=[
     S("門市",
-      ("地址", "Philharmonikerstraße 4, 1010 Wien，國家歌劇院後方。・" + M("Hotel Sacher Wien, Philharmonikerstraße 4")),
-      ("怎麼去", "Day 3 下午從[[p-khm|藝術史博物館]]走過去約 10 分鐘。")),
+      ("買外帶蛋糕", "Sacher Confiserie，Kärntner Straße 38（飯店轉角，國家歌劇院後方），官網寫每天 09:00–22:00。・" + M("Sacher Confiserie, Kärntner Straße 38, 1010 Wien")),
+      ("內用咖啡館", "Café Sacher，Philharmonikerstraße 4，官網寫每天 07:00–23:00。・" + M("Café Sacher Wien, Philharmonikerstraße 4")),
+      ("什麼時候去", "Day 3 下午自由活動，從[[p-khm|藝術史博物館]]走過去約 10 分鐘。晚上[[p-concert|音樂協會]]離這裡約 5 分鐘，但音樂會前後能不能脫隊，先問領隊。"),
+      ("薩爾茲堡備案", "維也納沒買到的話，Day 6 薩爾茲堡也有 Hotel Sacher（Schwarzstraße 5–7，河的右岸，[[p-mirabell|米拉貝爾花園]]南邊），咖啡館附設甜點門市；咖啡館官網寫每天 08:30–22:00，門市時間以現場為準。・" + M("Hotel Sacher Salzburg, Schwarzstraße 5-7, Salzburg"))),
     S("蛋糕的故事",
       "1832 年，梅特涅親王要宮廷廚房做一道新甜點，主廚剛好生病，16 歲的學徒法蘭茲・薩赫臨時做出了這款巧克力杏桃蛋糕。",
       "他的兒子愛德華在 1876 年開了薩赫飯店。後來薩赫飯店和甜點店 Demel 為了誰能叫「正宗」打了好幾年官司，最後薩赫取得「Original Sacher-Torte」的名稱，蛋糕上有圓形的巧克力封印。"),
@@ -112,7 +114,7 @@ SH("s-sacher", zh="薩赫飯店", en="Hotel Sacher Wien・Original Sacher-Torte"
       ("保存方式", "放在原本的木盒和玻璃紙裡，存放在 16–18°C、避免陽光直射的地方。"),
       ("帶上飛機", "蛋糕不算液體，可以手提。10/13 買的話，回到台灣大約過了 9 天，小尺寸也來得及。")),
     S("小提醒",
-      "咖啡館常排長隊；只買外帶蛋糕的話，可以直接到 Sacher Shop 的櫃檯結帳。"),
+      "咖啡館常排長隊；只買外帶蛋糕的話，直接去轉角的 Confiserie 門市結帳，不用排咖啡館的隊。"),
   ])
 
 SH("s-moser", zh="莫瑟水晶", en="Moser", eyebrow="伴手禮門市・捷克",
