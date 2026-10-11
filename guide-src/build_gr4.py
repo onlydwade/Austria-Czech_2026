@@ -105,6 +105,47 @@ RECIPES = [
          note="暗部偏綠、氣氛冷靜。晴天的藍天用它會有點灰，那時改用正片。"),
 ]
 
+# Ricoh Recipes（ricohrecipes.com，Ritchie Roesch）GR IV 入門系列 Starter Collection 的彩色配方。
+# 數值照網站抄錄；kv 是兩欄小表，wide 是整列。
+RR_RECIPES = [
+    dict(name="EktaSlide", base="正片", color="#2F6EA3", pick="風景、建築首選",
+         why="模仿柯達 Ektachrome 正片：藍天和湖水乾淨、反差高。白平衡用自動，換到室內也不容易偏色，最萬用。",
+         kv=[("飽和度", "+2"), ("色相", "+2"), ("高/低調", "+2"), ("對比", "+4"), ("亮部對比", "−4"), ("暗部對比", "0"),
+             ("銳利度", "+1"), ("暗角", "0"), ("清晰度", "+1"), ("顆粒", "大小 1・強度 1"), ("亮部修正", "開"), ("暗部修正", "強")],
+         wide=[("白平衡", "自動（白色優先）・補償 G6、A8"), ("其他", "周邊光量補正 開・高 ISO 降噪 關"), ("曝光補償", "0 到 +2/3")]),
+    dict(name="Travelog", base="正片", color="#2F6EA3", pick="秋天湖區、旅行紀錄",
+         why="名字就是「旅行日誌」。顏色很飽和、整體偏暖，十月的黃葉和木屋很好看。白平衡固定陰天，室內黃燈下會更橘。",
+         kv=[("飽和度", "+4"), ("色相", "−1"), ("高/低調", "+3"), ("對比", "0"), ("亮部對比", "−3"), ("暗部對比", "+1"),
+             ("銳利度", "−1"), ("暗角", "0"), ("清晰度", "−2"), ("顆粒", "大小 2・強度 2"), ("亮部修正", "開"), ("暗部修正", "中")],
+         wide=[("白平衡", "陰天・補償 G8、B9"), ("其他", "周邊光量補正 開"), ("曝光補償", "−1/3 到 +1/3")]),
+    dict(name="Pro Color", base="負片", color="#A07A0B", pick="人像、街景、美食",
+         why="負片底，顏色濃但膚色自然，暗部比較亮，老城街景有底片感。白平衡固定日光，室內黃燈下會偏暖。",
+         kv=[("飽和度", "+4"), ("色相", "−2"), ("高/低調", "+3"), ("對比", "+3"), ("亮部對比", "−2"), ("暗部對比", "+4"),
+             ("銳利度", "−1"), ("暗角", "0"), ("清晰度", "−1"), ("顆粒", "大小 2・強度 1"), ("亮部修正", "開"), ("暗部修正", "強")],
+         wide=[("白平衡", "日光・補償 G5、A10"), ("曝光補償", "−1/3 到 +1/3")]),
+    dict(name="Lomo Color", base="電影（黃）", color="#C8661A", pick="黃昏、夜景、想玩的時候",
+         why="LOMO 相機的感覺：顏色很濃、四角稍暗、偏暖。效果強，挑幾個場景玩就好，不適合整趟都用。",
+         kv=[("飽和度", "+4"), ("色相", "+3"), ("高/低調", "+4"), ("對比", "+3"), ("亮部對比", "−4"), ("暗部對比", "+4"),
+             ("銳利度", "−2"), ("暗角", "−1"), ("清晰度", "−2"), ("色調", "3"), ("顆粒", "大小 1・強度 3"), ("暗部修正", "中")],
+         wide=[("白平衡", "陰影・補償 M4、B10"), ("其他", "周邊光量補正 開・高 ISO 降噪 關"), ("曝光補償", "−2/3 到 −1/3")]),
+    dict(name="Expired Negative", base="電影（綠）", color="#3F8433", pick="想要懷舊、過期底片感",
+         why="模仿過期或保存不好的底片：低對比、顆粒粗、偏色重。很有個性，但顏色不真實，當作偶爾玩的效果。",
+         kv=[("飽和度", "−1"), ("色相", "−1"), ("對比", "−3"), ("亮部對比", "+4"), ("暗部對比", "+4"), ("銳利度", "−2"),
+             ("清晰度", "−3"), ("色調", "3"), ("顆粒", "大小 3・強度 3")],
+         wide=[("白平衡", "色溫 9700K・補償 G4、B14"), ("沒列的", "高/低調、暗角等項目見網站"), ("曝光補償", "+2/3 到 +1")]),
+]
+
+# 風景、建築、教堂：(場景, 首選, 備選, 重點)
+SCENE_FILTERS = [
+    ("風景・晴天", "EktaSlide 或正片", "Travelog（想暖一點，拍黃葉）", "藍天湖水最漂亮。曝光 −0.3 保住天空。"),
+    ("風景・陰天、起霧", "電影（綠）", "負片", "陰天用正片會灰灰的；電影（綠）把灰變成氣氛。"),
+    ("建築外觀・白天", "EktaSlide 或正片", "Pro Color（老城的底片感）", "清晰度 +1 讓雕刻和屋瓦更清楚。F8，相機拿正。"),
+    ("建築・黃昏、夜景", "電影（黃）", "Lomo Color", "暖色街燈很有電影感。曝光 −0.7，燈才不會過曝。"),
+    ("教堂、宮殿室內", "標準＋自動白平衡", "EktaSlide（也是自動白平衡）；想要暖色氣氛用電影（黃）",
+     "金色裝飾和壁畫要顏色準，用標準最穩。Travelog、Pro Color、Lomo Color 的白平衡是固定的，在黃色燈光下會很橘，進室內前切回自動白平衡。"),
+    ("彩繪玻璃", "正片", "EktaSlide", "對著亮的玻璃測光，曝光 −0.7 到 −1，顏色才飽滿。"),
+]
+
 USER_MODES = [
     ("U1 白天風景", "Av・F8・ISO 自動（上限 1600）・曝光 0・正片・RAW＋JPEG・ND 自動"),
     ("U2 人像美食", "Av・F2.8・ISO 自動（上限 3200）・曝光 +0.3・負片（美食可改正片）・RAW＋JPEG・ND 自動"),
@@ -165,6 +206,9 @@ SOURCES = [
     ("DPReview GR IV 評測", "https://www.dpreview.com/reviews/ricoh-gr-iv-in-depth-review/"),
     ("Amateur Photographer GR IV 評測", "https://amateurphotographer.com/review/ricoh-gr-iv-review/"),
     ("Ricoh Recipes：GR IV 第一個配方", "https://ricohrecipes.com/2025/10/24/my-ricoh-gr-iv-arrived-first-recipe-test/"),
+    ("Ricoh Recipes：GR IV 入門系列（Starter Collection）", "https://ricohrecipes.com/the-starter-collection/"),
+    ("Ricoh Recipes：GR IV 配方總覽", "https://ricohrecipes.com/ricoh-gr-iv-recipes/"),
+    ("Ricoh Recipes App", "https://ricohrecipes.com/ricoh-recipes-app/"),
     ("RICOH GR Blog：自訂負片", "https://www.grblog.jp/en/article/7151/"),
     ("熊布朗宮參觀常見問題（拍照規定）", "https://www.schoenbrunn.at/en/visitor-information/faq"),
 ]
@@ -212,6 +256,12 @@ h3.sub-h{font-size:1rem;margin:18px 0 6px;color:var(--river)}
 .recipe h3 small{font-weight:400;color:var(--ink2);font-size:.8rem}
 .recipe table{margin:8px 0}
 .recipe td.v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;margin-top:8px;font-size:.88rem}
+.kv div{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid var(--rule)}
+.kv b{font-variant-numeric:tabular-nums;text-align:right}
+.kv.wide{grid-template-columns:1fr;margin-top:0}
+.kv.wide span{flex:0 0 auto}
+.pick{font-size:.72rem;font-weight:700;color:#fff;background:var(--accent);border-radius:99px;padding:1px 8px}
 .fine{font-size:.8rem;color:var(--ink2);margin-top:8px}
 .scene dl{margin:6px 0 0;display:grid;gap:4px}
 .scene dl div{display:grid;grid-template-columns:3.2em 1fr;gap:8px}
@@ -226,8 +276,8 @@ def build():
     o = []
     o.append('<header class="top"><p class="eyebrow">RICOH GR IV・奧捷 12 日</p><h1>GR IV 拍照筆記</h1>'
              '<p class="sub">風景、人像、美食都想拍：光圈、快門、ISO 怎麼設，濾鏡怎麼調，這趟每個景點怎麼拍。</p></header>')
-    toc = [("top3", "先記這三個"), ("basics", "光圈快門 ISO"), ("modes", "拍攝模式"), ("recipes", "濾鏡配方"),
-           ("umodes", "U1–U3"), ("scenes", "這趟怎麼拍"), ("camera", "相機功能"), ("check", "出發前")]
+    toc = [("top3", "先記這三個"), ("basics", "光圈快門 ISO"), ("modes", "拍攝模式"), ("recipes", "濾鏡配方"), ("which", "風景・建築・教堂"),
+           ("rr", "Ricoh Recipes"), ("umodes", "U1–U3"), ("scenes", "這趟怎麼拍"), ("camera", "相機功能"), ("check", "出發前")]
     o.append('<nav class="toc" aria-label="目錄"><div class="in">' + "".join(f'<a href="#{i}">{t}</a>' for i, t in toc) + '</div></nav>')
     o.append('<main class="wrap">')
     # 先記這三個
@@ -259,6 +309,34 @@ def build():
                  f'<p><b>適合：</b>{esc(r["good"])}</p><table><tbody>{rows}</tbody></table><p>{rich(r["note"])}</p></div>')
     o.append('</div><p class="fine">表上沒列的參數（暗角 Shading、色調 Toning 等）維持 0。顆粒只有正片、負片、兩種電影和黑白可以加，大小和強度各有三段。'
              '這些效果只套在 JPEG，RAW 不受影響。</p></section>')
+    # 風景、建築、教堂用哪個
+    o.append('<section id="which"><h2>風景、建築、教堂用哪個濾鏡</h2>'
+             '<p class="lead">一句話：晴天戶外用正片類，陰天用電影（綠），室內用標準，晚上用電影（黃）。</p><div class="cards">')
+    for sc, first, alt, tip in SCENE_FILTERS:
+        o.append(f'<div class="card scene"><h3>{esc(sc)}</h3><dl><div><dt>首選</dt><dd><b>{esc(first)}</b></dd></div>'
+                 f'<div><dt>備選</dt><dd>{esc(alt)}</dd></div><div><dt>重點</dt><dd>{esc(tip)}</dd></div></dl></div>')
+    o.append('</div></section>')
+    # Ricoh Recipes
+    o.append('<section id="rr"><h2>Ricoh Recipes 推薦</h2><p class="lead">' + rich(
+        "[[https://ricohrecipes.com/ricoh-gr-iv-recipes/|Ricoh Recipes]] 是攝影部落客 Ritchie Roesch 整理的 GR 配方網站，也有 iOS、Android App。"
+        "GR IV 專用的入門系列有 7 個配方，其中 5 個彩色的剛好用正片、負片、電影（黃）、電影（綠）當底，跟你喜歡的濾鏡一樣。"
+        "前三個最推薦。") + '</p>')
+    o.append('<div class="cards">')
+    for i, r in enumerate(RR_RECIPES):
+        star = '<span class="pick">推薦</span>' if i < 3 else ''
+        kv = "".join(f'<div><span>{esc(k)}</span><b>{esc(v)}</b></div>' for k, v in r["kv"])
+        wide = "".join(f'<div><span>{esc(k)}</span><b>{esc(v)}</b></div>' for k, v in r["wide"])
+        o.append(f'<div class="card recipe" style="--rc:{r["color"]}"><h3>{esc(r["name"])}<small>底：{esc(r["base"])}</small>{star}</h3>'
+                 f'<p><b>適合：</b>{esc(r["pick"])}</p><p>{esc(r["why"])}</p>'
+                 f'<div class="kv">{kv}</div><div class="kv wide">{wide}</div></div>')
+    o.append('</div><div class="card" style="margin-top:10px"><h3>怎麼存進相機</h3>'
+             '<p>1. 影像風格選好「底」，照表調參數。</p>'
+             '<p>2. 按 WB 鍵設白平衡和補償（白平衡不在影像風格裡，要另外設）。</p>'
+             '<p>3. 設好 ISO 上限 6400 和曝光補償，再存進 U1–U3。例如 U1 EktaSlide、U2 Pro Color、U3 電影（黃）。</p>'
+             '<p>4. ISO 上限、曝光補償是作者的習慣，照現場亮暗調。</p></div>'
+             '<p class="fine">數值抄自 Ricoh Recipes 網站，輸入前可以在 App 或網頁再對一次；選單名稱以相機為準。'
+             '作者實測 GR III 的配方也能用在 GR IV，但 GR IV 拍起來偏暖、偏亮一點，所以這裡只挑 GR IV 專用的配方。'
+             '另外兩個是黑白配方（Panchromatic 400 +Red、Pushed B&W），有興趣可以到網站看。</p></section>')
     # U1–U3
     o.append('<section id="umodes"><h2>U1–U3 建議設定</h2><p class="lead">先在 Av 模式把下面的設定調好，再存進 U1–U3，到現場轉一下轉盤就切換。</p><dl class="facts">'
              + "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in USER_MODES) + '</dl></section>')
