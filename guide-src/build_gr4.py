@@ -1,0 +1,298 @@
+# -*- coding: utf-8 -*-
+"""RICOH GR IV 拍照筆記：獨立頁面，寫到 GR4/index.html。
+
+網址 https://onlydwade.github.io/Austria-Czech_2026/GR4/ ，行程主頁不放連結。
+相機規格查自 RICOH 官網、DPReview、Amateur Photographer 等評測；濾鏡配方是建議起點，可以自己再調。
+"""
+import html, os, re
+
+ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+OUT = os.path.join(ROOT, "GR4", "index.html")
+SITE = "../"   # 回到行程網頁
+
+def esc(t):
+    return html.escape(t, quote=True)
+
+LINK_RE = re.compile(r"\[\[([^|\]]+)\|([^\]]+)\]\]")
+
+def rich(t):
+    """[[網址或 #錨點|文字]]；行程主頁的錨點寫成 ../#d4。"""
+    t = html.escape(t, quote=False)
+    def rep(m):
+        href, label = m.group(1), m.group(2)
+        ext = href.startswith("http")
+        attrs = ' target="_blank" rel="noopener"' if ext else ""
+        return f'<a href="{esc(href)}"{attrs}>{label}{" ↗" if ext else ""}</a>'
+    return LINK_RE.sub(rep, t)
+
+# ───────────────────────── 內容 ─────────────────────────
+TOP3 = [
+    ("大部分時間用 Av 模式", "你決定光圈，相機決定快門。只要記住：拍人和食物用 F2.8，拍風景建築用 F8。"),
+    ("畫面太亮太暗就按 ± 鍵", "曝光補償一次調 0.3。天空、白牆、雪地拍起來偏暗就往 +；夜景、深色背景偏亮就往 −。"),
+    ("檔案存 RAW＋JPEG", "濾鏡效果只套在 JPEG，RAW 不受影響。JPEG 直接分享，RAW 留著之後想換濾鏡還能重調。"),
+]
+
+SPECS = [
+    ("鏡頭", "28mm 等效廣角定焦，光圈 F2.8–F16。不能變焦，想拍大一點就走近。"),
+    ("感光元件", "APS-C、約 2,574 萬畫素，ISO 100–204800。"),
+    ("防手震", "機身 5 軸防手震，拍靜止的東西可以用比較慢的快門。"),
+    ("內建 ND 濾鏡", "減 2 級光線。設成自動，大太陽下用 F2.8 時相機會自己開。"),
+    ("微距", "最近可以對焦到 6 公分，拍食物細節很好用。"),
+    ("快拍對焦 Snap", "預先設好對焦距離（0.3、1、1.5、2、2.5、3.5、5 公尺、無限遠），按下快門就拍，不用等對焦。"),
+    ("裁切 35mm／50mm", "畫面會變窄，畫素降到約 1,630 萬／820 萬，而且拍完不能還原。這趟建議少用，靠走近或事後裁切。"),
+    ("U1–U3", "模式轉盤上的自訂模式，可以把整組設定存起來，一轉就切換。建議設定見下方。"),
+]
+
+APERTURE = [
+    ("F2.8", "人像、夜景、室內", "背景最模糊、進光最多。28mm 是廣角，背景本來就不容易糊，要靠近主體、讓背景離遠一點。"),
+    ("F4", "美食", "盤子前後都比較清楚，背景還是有點柔。"),
+    ("F5.6", "街拍", "配合快拍對焦 2.5 公尺，走路時舉起來就拍。"),
+    ("F8–F11", "風景、建築、大合照", "從前到後都清楚。F11 以上畫質反而會變軟，不用再縮。"),
+]
+
+SHUTTER = [
+    ("1/500 秒以上", "遊船、巴士窗外、電車、跑跳的人"),
+    ("1/125 秒", "走動的人、街景"),
+    ("1/60 秒", "站著不動的人"),
+    ("1/15–1/8 秒", "夜景、室內的靜物，靠防手震手持；身體靠牆或欄杆更穩"),
+]
+
+ISO = [
+    ("100–400", "晴天戶外"),
+    ("800–1600", "陰天、室內、黃昏"),
+    ("3200–6400", "夜景、昏暗的室內和鹽礦"),
+    ("ISO 自動", "上限設 6400，相機會在範圍內自己調，最省事。"),
+]
+
+MODES = [
+    ("Av 光圈優先（主力）", [
+        "你決定光圈（F 值），相機決定快門速度，用來控制背景模糊或清楚。",
+        "拍人像、美食、靜物特寫：用大光圈（如 F2.8）讓背景變模糊，凸顯主體。",
+        "拍風景、建築、大合照：用小光圈（如 F8、F11）讓從前到後都清楚。",
+        "景深參考：街拍 F5.6、人像 F2.8、食物 F4.0。這是最常用的模式。",
+        "要注意畫面上的快門速度：拍人時低於 1/60，就把 ISO 調高。",
+    ]),
+    ("Tv 快門優先", ["你決定快門速度，相機決定光圈。遊船、車窗外、電車上用 1/500，畫面才不會糊。"]),
+    ("P 程式自動", ["相機全部自己決定，臨時要拍、來不及想的時候用。"]),
+    ("M 手動", ["光圈和快門都自己設。夜景想要固定效果時再用，這趟不一定需要。"]),
+]
+
+# 濾鏡（影像風格 Image Control）配方：-4 到 +4，0 是預設。值是建議起點。
+PARAMS = ["飽和度 Saturation", "色相 Hue", "高/低調 High/Low Key", "對比 Contrast", "對比（亮部）Highlight",
+          "對比（暗部）Shadow", "銳利度 Sharpness", "清晰度 Clarity", "顆粒 Grain"]
+RECIPES = [
+    dict(name="標準", en="Standard", color="#4C5668",
+         good="人像、室內、需要真實顏色的時候。最不會出錯。",
+         vals=["0", "0", "0", "0", "−1", "0", "+1", "0", "關"],
+         note="亮部對比 −1 讓天空和白牆比較不會過曝。"),
+    dict(name="正片", en="Positive Film", color="#2F6EA3",
+         good="晴天的湖景、藍天、建築、色彩豐富的食物。",
+         vals=["+2", "0", "+1", "+1", "−2", "0", "+1", "0", "關"],
+         note="顏色鮮豔、反差高。想要更濃的版本可以參考 Ricoh Recipes 的「Travelog」配方（飽和度 +4、色相 −1、高/低調 +3、亮部對比 −3、暗部對比 +1、加顆粒）。"
+              "・[[https://ricohrecipes.com/2025/10/24/my-ricoh-gr-iv-arrived-first-recipe-test/|Travelog 配方]]"),
+    dict(name="負片", en="Negative Film", color="#A07A0B",
+         good="人像、陰天、老城街景，顏色柔和、膚色好看。",
+         vals=["−1", "0", "+1", "0", "−2", "+1", "0", "0", "小・弱"],
+         note="偏淡、偏懷舊。想要高反差的版本，可以參考 RICOH 官方 GR Blog 的自訂負片（飽和度 −2、對比 +3、亮部對比 +4、暗部對比 −4）。"
+              "・[[https://www.grblog.jp/en/article/7151/|官方 GR Blog]]"),
+    dict(name="電影（黃）", en="Cinema (Yellow)", color="#C8661A",
+         good="黃昏、夜景、咖啡館、布拉格的暖色街燈。",
+         vals=["0", "0", "−1", "+1", "−2", "−1", "0", "0", "小・弱"],
+         note="整體偏黃、有電影感。在很黃的燈光下會太橘，那時改用標準。"),
+    dict(name="電影（綠）", en="Cinema (Green)", color="#3F8433",
+         good="陰天或起霧的湖區、森林、雨天的老城。",
+         vals=["−1", "0", "0", "0", "−1", "−1", "0", "0", "小・弱"],
+         note="暗部偏綠、氣氛冷靜。晴天的藍天用它會有點灰，那時改用正片。"),
+]
+
+USER_MODES = [
+    ("U1 白天風景", "Av・F8・ISO 自動（上限 1600）・曝光 0・正片・RAW＋JPEG・ND 自動"),
+    ("U2 人像美食", "Av・F2.8・ISO 自動（上限 3200）・曝光 +0.3・負片（美食可改正片）・RAW＋JPEG・ND 自動"),
+    ("U3 夜景室內", "Av・F2.8・ISO 自動（上限 6400）・曝光 −0.3 到 −0.7・電影（黃）・RAW＋JPEG"),
+]
+
+# 這趟的場景：(標題, 什麼時候, 設定, 濾鏡, 小提醒)
+SCENES = [
+    ("湖景：哈斯達特、沃夫岡湖", "[[../#d4|Day 4]]–[[../#d5|5]]",
+     "Av F8・ISO 100–400・曝光 −0.3（保住天空和湖面亮部）",
+     "晴天正片；陰天或起霧用電影（綠）",
+     "壓低一點拍，湖面倒影會比較完整。哈斯達特是居民的家，不要闖進私人庭院或碼頭。"),
+    ("鹽礦", "[[../#d5|Day 5]]",
+     "Av F2.8・ISO 自動（上限 6400）・快門至少 1/60",
+     "標準或負片",
+     "礦裡很暗，人又一直在走。拍人時讓對方停一下。礦工滑梯會自動測速拍照，滑的時候把相機收好。"),
+    ("建築：維也納、薩爾茲堡、布拉格城堡", "[[../#d2|Day 2]]、[[../#d3|3]]、[[../#d6|6]]、[[../#d9|9]]",
+     "Av F8・ISO 100–400",
+     "正片；陰天用負片",
+     "28mm 很廣，靠太近拍高樓會往後倒。退後幾步、相機拿正，或把建築放在畫面中間。梅爾克修道院兩翼之間的觀景平台可以拍多瑙河。"),
+    ("教堂、宮殿、圖書館室內", "整趟",
+     "Av F2.8・ISO 1600–3200・曝光 0",
+     "標準",
+     "[[../#d3|熊布朗宮]]室內一般可以拍，但不能開閃光燈、不能用腳架和自拍棒，人多時工作人員可能請你停拍。[[../#d2|梅爾克修道院]]室內（圖書館、博物館）很多遊客回報不能拍，以現場標示為準。音樂會演出時不要拍，散場後再拍音樂廳。"),
+    ("老城街景：庫倫洛夫、布拉格", "[[../#d6|Day 6]]、[[../#d8|8]]–[[../#d10|10]]",
+     "Av F5.6・快拍對焦 2.5 公尺",
+     "負片或正片",
+     "快拍對焦不用等對焦，走路時看到畫面就拍。庫倫洛夫可以從城堡往下拍河灣和紅屋頂。"),
+    ("夜景：查理大橋、布拉格城堡、舊城廣場", "[[../#d8|Day 8]]–[[../#d10|10]] 晚上",
+     "Av F2.8・ISO 1600–3200・曝光 −0.7・靜物快門 1/15 左右",
+     "電影（黃）",
+     "曝光往 − 調，燈光才不會過曝成一片白。畫面裡有人時，快門至少 1/60。"),
+    ("遊船、巴士窗外、電車", "[[../#d10|Day 10]]，以及每天的車程",
+     "Tv 1/500・ISO 自動",
+     "正片",
+     "鏡頭貼近玻璃、避開反光；穿深色衣服反光更少。"),
+    ("人像：旅伴、合照", "整趟",
+     "半身 Av F2.8；合照 Av F5.6–F8・逆光時曝光 +0.7",
+     "負片或標準",
+     "靠近拍半身，讓背景離人遠一點。合照時 28mm 很好用，站近一點就塞得下全團。"),
+    ("美食：米其林午餐、帝國咖啡館、煙囪捲、冰淇淋", "[[../#d3|Day 3]]、[[../#d9|9]]、[[../#d10|10]]",
+     "Av F2.8–F4・曝光 +0.3 到 +0.7・近拍用微距（最近 6 公分）",
+     "正片（顏色鮮豔）或標準（顏色真實）",
+     "坐靠窗的位置用自然光，斜 45 度或正上方拍。不要開閃光燈，也不要擋到別桌。"),
+]
+
+CHECKLIST = [
+    ("時間", "把相機時間改成歐洲時間（比台灣慢 6 小時），照片日期才對。"),
+    ("電池", "帶備用電池；行動電源只能隨身帶，飛機上禁止使用和充電。"),
+    ("記憶卡", "清出空間；RAW＋JPEG 很佔容量，可以多帶一張卡。"),
+    ("鏡頭", "出門前擦乾淨；放進有軟墊的包或專用套，鏡頭表面不要直接碰鑰匙等硬物。"),
+    ("防扒", "相機掛在身上或手腕，不要放在桌上或後背包外層。"),
+]
+
+SOURCES = [
+    ("RICOH GR IV 官方頁面", "https://us.ricoh-imaging.com/product/gr-iv/"),
+    ("RICOH GR IV 使用手冊（PDF）", "https://www.ricoh-imaging.co.jp/resources/english/support/man-pdf/gr-4_en.pdf"),
+    ("DPReview GR IV 評測", "https://www.dpreview.com/reviews/ricoh-gr-iv-in-depth-review/"),
+    ("Amateur Photographer GR IV 評測", "https://amateurphotographer.com/review/ricoh-gr-iv-review/"),
+    ("Ricoh Recipes：GR IV 第一個配方", "https://ricohrecipes.com/2025/10/24/my-ricoh-gr-iv-arrived-first-recipe-test/"),
+    ("RICOH GR Blog：自訂負片", "https://www.grblog.jp/en/article/7151/"),
+    ("熊布朗宮參觀常見問題（拍照規定）", "https://www.schoenbrunn.at/en/visitor-information/faq"),
+]
+
+# ───────────────────────── 版面 ─────────────────────────
+CSS = """
+:root{--paper:#F1F3F2;--sheet:#FFFFFF;--ink:#18202C;--ink2:#4C5668;--rule:#D3D9DE;--accent:#962437;--river:#1E6878;
+  --f-head:"Noto Serif TC","Songti TC","PMingLiU",serif;--f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#10151C;--sheet:#18202A;--ink:#E8ECF1;--ink2:#A3ADBB;--rule:#2B3542;--accent:#EE8E9C;--river:#6CC0CF;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#10151C;--sheet:#18202A;--ink:#E8ECF1;--ink2:#A3ADBB;--rule:#2B3542;--accent:#EE8E9C;--river:#6CC0CF;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.75;-webkit-text-size-adjust:100%}
+a{color:var(--accent)}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:720px;margin-inline:auto;padding:0 16px}
+header.top{padding:28px 16px 18px;max-width:720px;margin-inline:auto;display:grid;gap:6px}
+.eyebrow{font-size:.8rem;letter-spacing:.08em;color:var(--ink2)}
+h1{font-family:var(--f-head);font-size:clamp(1.9rem,8vw,2.5rem);line-height:1.25}
+.sub{color:var(--ink2)}
+nav.toc{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--rule)}
+nav.toc .in{max-width:720px;margin-inline:auto;display:flex;gap:6px;overflow-x:auto;padding:8px 16px;scrollbar-width:none}
+nav.toc .in::-webkit-scrollbar{display:none}
+nav.toc a{flex:0 0 auto;padding:4px 12px;border:1px solid var(--rule);border-radius:99px;background:var(--sheet);color:var(--ink);text-decoration:none;font-size:.85rem}
+section{padding:26px 0 6px;scroll-margin-top:56px}
+h2{font-family:var(--f-head);font-size:1.3rem;color:var(--accent);margin-bottom:10px}
+.lead{color:var(--ink2);margin-bottom:12px}
+.cards{display:grid;gap:10px}
+.card{padding:12px 14px;border:1px solid var(--rule);border-radius:10px;background:var(--sheet)}
+.card h3{font-size:1rem;margin-bottom:4px}
+.card p{font-size:.93rem}
+.card p+p{margin-top:4px}
+.top3 .card{border-left:5px solid var(--accent)}
+.top3 .n{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:6px;border-radius:50%;background:var(--accent);color:#fff;font-size:.75rem;vertical-align:2px}
+dl.facts{margin:0;display:grid;gap:8px}
+dl.facts div{display:grid;grid-template-columns:7.5em 1fr;gap:10px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+dl.facts dt{font-weight:700;font-size:.9rem}
+dl.facts dd{margin:0;font-size:.93rem}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;vertical-align:top;padding:8px 6px;border-bottom:1px solid var(--rule)}
+th{white-space:nowrap}
+td.k{font-weight:700;white-space:nowrap}
+h3.sub-h{font-size:1rem;margin:18px 0 6px;color:var(--river)}
+.recipe{border-left:6px solid var(--rc)}
+.recipe h3{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.recipe h3 small{font-weight:400;color:var(--ink2);font-size:.8rem}
+.recipe table{margin:8px 0}
+.recipe td.v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+.fine{font-size:.8rem;color:var(--ink2);margin-top:8px}
+.scene dl{margin:6px 0 0;display:grid;gap:4px}
+.scene dl div{display:grid;grid-template-columns:3.2em 1fr;gap:8px}
+.scene dt{font-size:.8rem;font-weight:700;color:var(--ink2);padding-top:2px}
+.scene dd{margin:0;font-size:.93rem}
+.scene .when{font-size:.8rem;color:var(--ink2)}
+footer{max-width:720px;margin:24px auto 0;padding:16px 16px 40px;border-top:1px solid var(--rule);font-size:.85rem;color:var(--ink2)}
+footer ul{padding-left:1.2em;margin:6px 0 12px}
+"""
+
+def build():
+    o = []
+    o.append('<header class="top"><p class="eyebrow">RICOH GR IV・奧捷 12 日</p><h1>GR IV 拍照筆記</h1>'
+             '<p class="sub">風景、人像、美食都想拍：光圈、快門、ISO 怎麼設，濾鏡怎麼調，這趟每個景點怎麼拍。</p></header>')
+    toc = [("top3", "先記這三個"), ("basics", "光圈快門 ISO"), ("modes", "拍攝模式"), ("recipes", "濾鏡配方"),
+           ("umodes", "U1–U3"), ("scenes", "這趟怎麼拍"), ("camera", "相機功能"), ("check", "出發前")]
+    o.append('<nav class="toc" aria-label="目錄"><div class="in">' + "".join(f'<a href="#{i}">{t}</a>' for i, t in toc) + '</div></nav>')
+    o.append('<main class="wrap">')
+    # 先記這三個
+    o.append('<section id="top3"><h2>先記這三個</h2><div class="cards top3">')
+    for i, (h, p) in enumerate(TOP3, 1):
+        o.append(f'<div class="card"><h3><span class="n">{i}</span>{esc(h)}</h3><p>{rich(p)}</p></div>')
+    o.append('</div></section>')
+    # 光圈快門 ISO
+    o.append('<section id="basics"><h2>光圈、快門、ISO</h2>'
+             '<p class="lead">三個一起決定照片亮暗。光圈管背景模糊，快門管會不會糊掉，ISO 管亮度但越高越多雜訊。</p>')
+    o.append('<h3 class="sub-h">光圈（F 值）：數字越小，背景越模糊</h3><table><tbody>'
+             + "".join(f'<tr><td class="k">{esc(a)}</td><td><b>{esc(b)}</b><br>{esc(c)}</td></tr>' for a, b, c in APERTURE) + '</tbody></table>')
+    o.append('<h3 class="sub-h">快門：越快越不會糊</h3><table><tbody>'
+             + "".join(f'<tr><td class="k">{esc(a)}</td><td>{esc(b)}</td></tr>' for a, b in SHUTTER) + '</tbody></table>')
+    o.append('<h3 class="sub-h">ISO：越高越亮，也越多雜訊</h3><table><tbody>'
+             + "".join(f'<tr><td class="k">{esc(a)}</td><td>{esc(b)}</td></tr>' for a, b in ISO) + '</tbody></table>')
+    o.append('</section>')
+    # 拍攝模式
+    o.append('<section id="modes"><h2>拍攝模式</h2><div class="cards">')
+    for h, ps in MODES:
+        o.append(f'<div class="card"><h3>{esc(h)}</h3>' + "".join(f'<p>{rich(p)}</p>' for p in ps) + '</div>')
+    o.append('</div></section>')
+    # 濾鏡配方
+    o.append('<section id="recipes"><h2>濾鏡配方（影像風格）</h2>'
+             '<p class="lead">GR IV 的影像風格 Image Control 有 14 種，每種都能微調參數，範圍 −4 到 +4。下面是你想用的五種，數值是建議起點，拍幾張再依喜好調。白平衡都用自動。</p><div class="cards">')
+    for r in RECIPES:
+        rows = "".join(f'<tr><td>{esc(p)}</td><td class="v">{esc(v)}</td></tr>' for p, v in zip(PARAMS, r["vals"]))
+        o.append(f'<div class="card recipe" style="--rc:{r["color"]}"><h3>{esc(r["name"])}<small>{esc(r["en"])}</small></h3>'
+                 f'<p><b>適合：</b>{esc(r["good"])}</p><table><tbody>{rows}</tbody></table><p>{rich(r["note"])}</p></div>')
+    o.append('</div><p class="fine">表上沒列的參數（暗角 Shading、色調 Toning 等）維持 0。顆粒只有正片、負片、兩種電影和黑白可以加，大小和強度各有三段。'
+             '這些效果只套在 JPEG，RAW 不受影響。</p></section>')
+    # U1–U3
+    o.append('<section id="umodes"><h2>U1–U3 建議設定</h2><p class="lead">先在 Av 模式把下面的設定調好，再存進 U1–U3，到現場轉一下轉盤就切換。</p><dl class="facts">'
+             + "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in USER_MODES) + '</dl></section>')
+    # 這趟怎麼拍
+    o.append('<section id="scenes"><h2>這趟怎麼拍</h2><div class="cards">')
+    for t, when, setting, filt, tip in SCENES:
+        o.append(f'<div class="card scene"><h3>{esc(t)}</h3><p class="when">{rich(when)}</p><dl>'
+                 f'<div><dt>設定</dt><dd>{esc(setting)}</dd></div><div><dt>濾鏡</dt><dd>{esc(filt)}</dd></div>'
+                 f'<div><dt>提醒</dt><dd>{rich(tip)}</dd></div></dl></div>')
+    o.append('</div></section>')
+    # 相機功能
+    o.append('<section id="camera"><h2>GR IV 這台相機</h2><dl class="facts">'
+             + "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in SPECS) + '</dl></section>')
+    # 出發前
+    o.append('<section id="check"><h2>出發前檢查</h2><dl class="facts">'
+             + "".join(f'<div><dt>{esc(k)}</dt><dd>{esc(v)}</dd></div>' for k, v in CHECKLIST) + '</dl></section>')
+    o.append('</main>')
+    o.append('<footer><p>相機規格查自以下資料；濾鏡和參數是建議起點，不是官方設定。實際選單名稱以你的相機為準。</p><ul>'
+             + "".join(f'<li><a href="{esc(u)}" target="_blank" rel="noopener">{esc(t)} ↗</a></li>' for t, u in SOURCES)
+             + f'</ul><p><a href="{SITE}">回到奧捷 12 日行程</a></p></footer>')
+    body = "".join(o)
+    page = ('<!doctype html>\n<html lang="zh-Hant">\n<head>\n<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
+            '<title>GR IV 拍照筆記</title>\n<meta name="robots" content="noindex, nofollow">\n'
+            '<meta name="theme-color" content="#962437">\n'
+            '<link rel="icon" type="image/png" sizes="192x192" href="../favicon.png">\n'
+            '<link rel="apple-touch-icon" href="../apple-touch-icon.png">\n'
+            '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+            '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">\n'
+            f'<style>{CSS}</style>\n</head>\n<body>\n{body}\n</body>\n</html>\n')
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    with open(OUT, "w", encoding="utf-8") as f:
+        f.write(page)
+    print("wrote", OUT, len(page.encode("utf-8")), "bytes")
+
+if __name__ == "__main__":
+    build()
