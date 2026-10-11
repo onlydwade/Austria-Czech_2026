@@ -18,7 +18,7 @@ OUT_INDEX = os.path.join(ROOT, "index.html")            # standalone page served
 DAYS = [
  dict(n=1, date="10/11", wd="日", city="台北 → 維也納", theme="夜班機出發",
       route=["桃園 TPE", "✈", "維也納 VIE"],
-      flight="CI63　TPE 23:45 → VIE 07:05（+1）・飛行約 13 小時 20 分", status="upd",
+      flight="CI63　TPE 23:45 → VIE 07:05（+1）・飛行約 13 小時 20 分",
       timeline=[("20:50", "桃園機場第一航廈・中華航空團體櫃檯（10–11 號櫃檯後方）集合，領隊到了會用 LINE 通知。領取登機證、網路 SIM 卡、導覽耳機和行李牌・[[" + MEET_MAP + "|地圖 ↗]]", False),
                 ("託運出境", "各自託運行李，等 X 光檢查通過再出境。安檢和護照查驗照航空公司與移民官指示。", False),
                 ("登機", "登機門、登機時間和登機順序以當天宣布和登機證為準，準時到登機門。", False),
@@ -27,7 +27,7 @@ DAYS = [
       intro=["搭華航直飛班機，機型是 A350-900，經濟艙 3-3-3。抵達維也納是當地早上 7 點多，盡量在機上多睡一點，隔天一下飛機就開始行程。眼罩、耳塞、頸枕記得放隨身包；上機後需要拖鞋、眼罩、耳機，也可以跟空服員要。"],
       stops=[], meals=[("早", "X"), ("午", "X"), ("晚", "機上精選美食")],
       hotel=("機上過夜", "")),
- dict(n=2, date="10/12", wd="一", city="維也納 → 梅爾克 → 維也納", theme="梅爾克修道院・百水公寓", status="upd",
+ dict(n=2, date="10/12", wd="一", city="維也納 → 梅爾克 → 維也納", theme="梅爾克修道院・百水公寓",
       route=["維也納", "梅爾克", "維也納"],
       intro=["早上 7 點多抵達維也納，先往西到多瑙河畔的梅爾克參觀修道院，下午回到維也納看百水公寓。"],
       notice="出關後就直接搭巴士出發，第一段車程約 1.5 小時。在機場先上洗手間、拿出保暖衣物，並綁上行李牌，飯店靠它幫忙搬行李。",
@@ -43,7 +43,7 @@ DAYS = [
       meals=[("早", "機上精選美食"), ("午", "肉醬斜管麵佐帕達諾乾酪・香草奶油烤雞胸配蔬菜和奶油飯・杏桃蛋糕佐鮮奶油＋酒水"),
              ("晚", "羊乳酪紅花菜豆沙拉・[[p-vienna|水煮牛 Tafelspitz]] 配薯餅、根莖蔬菜、蘋果辣根醬和細香蔥醬・皇帝煎餅配燉李子＋酒水")],
       hotel=("InterContinental Vienna", "維也納兩晚連泊。飯店在市立公園旁，走路可到金色史特勞斯雕像。")),
- dict(n=3, date="10/13", wd="二", city="維也納", theme="熊布朗宮・霍夫堡皇宮・聖史蒂芬大教堂・維也納音樂會", status="upd",
+ dict(n=3, date="10/13", wd="二", city="維也納", theme="熊布朗宮・霍夫堡皇宮・聖史蒂芬大教堂・維也納音樂會",
       route=["維也納市區"],
       timeline=[("上午", "市區觀光：[[p-schonbrunn|熊布朗宮]]（入內）・[[p-hofburg|霍夫堡皇宮]]・[[p-stephansdom|聖史蒂芬大教堂]]", False),
                 ("中午", "午餐：「米其林」推薦料理", False),
@@ -57,13 +57,13 @@ DAYS = [
           ("阿爾貝蒂納博物館 Albertina", "10:00–18:00", "阿爾貝特公爵的收藏，近代畫家為主，從莫內到畢卡索；最有名的館藏是杜勒的〈野兔〉，原作因怕光很少展出。", "https://maps.app.goo.gl/jrsm9VvQtnGhLosN6?g_st=al", None)]),
       meals=[("早", "飯店內早餐"), ("午", "感動味蕾體驗「米其林」推薦餐料理＋酒水"), ("晚", "風味料理＋酒水")],
       hotel=("InterContinental Vienna", "市立公園旁。走到音樂協會約 10 分鐘，到聖史蒂芬大教堂約 15 分鐘。")),
- dict(n=4, date="10/14", wd="三", city="維也納 → 湖區", theme="哈斯達特・聖沃夫岡", status="upd",
+ dict(n=4, date="10/14", wd="三", city="維也納 → 湖區", theme="哈斯達特・聖沃夫岡",
       route=["維也納", 288, "哈斯達特湖區", 37, "聖沃夫岡湖區"],
       intro=["今天直接從維也納往西開到湖區，288 公里車程約 3.5 小時，可以在車上補眠。"],
       stops=[("p-hallstatt", ""), ("p-stwolfgang", "")],
       meals=[("早", "飯店內早餐"), ("午", "當地特色料理＋酒水"), ("晚", "湖區新鮮鱒魚料理＋酒水")],
       hotel=("Romantik Hotel Im Weissen Rössl", "聖沃夫岡湖畔的白馬飯店，兩晚連泊。輕歌劇《白馬酒店》的舞台，有漂在湖上的溫水泳池。")),
- dict(n=5, date="10/15", wd="四", city="湖區", theme="世界最著名・鹽礦", status="upd",
+ dict(n=5, date="10/15", wd="四", city="湖區", theme="世界最著名・鹽礦",
       route=["聖沃夫岡湖區", 90, "鹽礦", "聖沃夫岡湖區"],
       notice="鹽礦裡常年 8–12°C，進去前會套上長袖長褲的礦工服，裡面穿兩層就夠。",
       stops=[("p-salzwelten", "門票已含")],
@@ -77,19 +77,19 @@ DAYS = [
       stops=[("p-salzburg", ""), ("p-festung", "★搭城堡纜車"), ("p-sbg-altstadt", ""), ("p-mirabell", ""), ("p-mozart", ""), ("p-krumlov", "")],
       meals=[("早", "飯店內早餐"), ("午", "奧地利風味料理＋酒水（如想逛街則改發餐費自理）"), ("晚", "穿越時光著中古世紀服飾 享受庫倫洛夫晚宴＋酒水")],
       hotel=("Hotel Zlatý Anděl", "金色天使飯店，就在庫倫洛夫的主廣場上，出門就是老城。")),
- dict(n=7, date="10/17", wd="六", city="南波希米亞 → 溫泉區", theme="百威啤酒的故鄉・瑪麗安斯凱", status="upd",
+ dict(n=7, date="10/17", wd="六", city="南波希米亞 → 溫泉區", theme="百威啤酒的故鄉・瑪麗安斯凱",
       route=["庫倫洛夫", 25, "巴德傑維契", 270, "瑪麗安斯凱"],
       stops=[("p-budejovice", ""), ("p-marienbad", "")],
       meals=[("早", "飯店內早餐"), ("午", "百威城主廚料理＋酒水"), ("晚", "飯店內主廚晚餐＋酒水")],
       hotel=("Luxury Historical Castle Hotel & Golf", "全名 Rübezahl Marienbad Luxury Historical Castle Hotel & Golf，20 世紀初的城堡建築，2015 年整修後重新開幕，附近就是 1905 年開幕的高爾夫球場。")),
- dict(n=8, date="10/18", wd="日", city="溫泉區 → 布拉格", theme="卡羅維瓦利・查理大橋・舊城廣場", status="upd",
+ dict(n=8, date="10/18", wd="日", city="溫泉區 → 布拉格", theme="卡羅維瓦利・查理大橋・舊城廣場",
       route=["瑪麗安斯凱", 55, "卡羅維瓦利", 128, "布拉格"],
       stops=[("p-karlovy", ""), ("p-prague", ""), ("p-charles", ""), ("p-oldtownsq", ""), ("p-tyn", ""), ("p-orloj", "")],
       extra=["在卡羅維瓦利記得試現烤的[[p-karlovy|溫泉薄餅]]，柱廊一帶到處都有店家・[[https://www.google.com/maps/search/?api=1&query=L%C3%A1ze%C5%88sk%C3%A9+oplatky%2C+Karlovy+Vary|薄餅店家地圖 ↗]]",
              "晚上在老城附近，想吃煙囪捲或冰淇淋，見[[p-prague-picks|布拉格口袋名單]]。"],
       meals=[("早", "飯店內早餐"), ("午", "風味料理餐廳＋酒水"), ("晚", "捷克醬鴨料理＋酒水")],
       hotel=("Hotel KINGS COURT Prague", "布拉格三晚連泊。共和廣場旁，隔壁是市民會館和火藥塔，走到舊城廣場約 10 分鐘。")),
- dict(n=9, date="10/19", wd="一", city="布拉格", theme="城堡區・黃金巷・舊城廣場", status="upd",
+ dict(n=9, date="10/19", wd="一", city="布拉格", theme="城堡區・黃金巷・舊城廣場",
       route=["布拉格"],
       intro=["布拉格景點集中，很適合連泊慢慢逛。城市主要分為城堡區、小城區、猶太區與新、舊城區，今天專心看城堡區。"],
       stops=[("p-castle", ""), ("p-vitus", "門票已含"), ("p-golden", "門票已含"), ("p-oldtownsq", "")],
@@ -106,7 +106,7 @@ DAYS = [
              ("p-parizska", "想去 Celine"), ("p-prague-picks", "煙囪捲・冰淇淋"), ("p-imperial", "18:00 已訂位")],
       meals=[("早", "飯店內早餐"), ("午", "中式懷鄉料理（八菜一湯）"), ("晚", "自理：[[p-imperial|帝國咖啡館]] 18:00（6 位已訂位）", "Café Imperial")],
       hotel=("Hotel KINGS COURT Prague", "連泊第三晚。帝國咖啡館離飯店步行約 5 分鐘。")),
- dict(n=11, date="10/21", wd="三", city="布拉格 → 台北", theme="早班機返台", status="upd",
+ dict(n=11, date="10/21", wd="三", city="布拉格 → 台北", theme="早班機返台",
       route=["布拉格 PRG", "✈", "桃園 TPE"],
       flight="CI68　PRG 10:40 → TPE 05:05（+1）・飛行約 12 小時 25 分",
       intro=["早班機，早餐後就出發去機場。這趟的歐盟購物退稅，都要在最後離開歐盟的布拉格機場辦理海關蓋章，請預留時間。CI68 從第 1 航廈出發・[[" + PRG_T1_MAP + "|機場地圖 ↗]]"],
@@ -387,9 +387,7 @@ def render_stop(pid, note, day_n):
 def render_day(d):
     n = d["n"]
     pill = ""
-    if d.get("status") == "upd":
-        pill = '<span class="pill upd">已更新</span>'
-    elif d.get("status") == "tbc":
+    if d.get("status") == "tbc":
         pill = '<span class="pill tbc">待確認</span>'
     o = [f'<section class="day" id="d{n}" data-label="Day {n}" data-date="{d["date"]}">']
     o.append(f'<header class="day-h"><span class="num" aria-hidden="true">{n}</span><div class="day-t">'
@@ -802,9 +800,16 @@ def render_gifts():
     return "".join(o)
 
 def render_changes():
+    """和原 PDF 的差異：內頁，從主頁最下面的連結打開。"""
     li = "".join(f'<li><b>{esc(k)}</b><span>{rich(v)}</span></li>' for k, v in CHANGES)
-    return (f'<section class="wrap block" id="changes" data-label="行程更新"><h2 class="sec-h">和原 PDF 的差異</h2>'
-            f'<p class="sec-sub">依新版手冊照片與你補充的安排整理。</p><ul class="facts">{li}</ul></section>')
+    return ('<article class="place" id="changes" data-label="和原 PDF 的差異" data-back="首頁">'
+            '<div class="readbar"><a class="back" href="#top"><span aria-hidden="true">‹</span> <span class="back-l">首頁</span></a>'
+            '<span class="rb-title">和原 PDF 的差異</span></div>'
+            '<div class="pl-in"><header class="pl-h"><p class="eyebrow">行程更新</p><h1>和原 PDF 的差異</h1>'
+            '<p class="pl-og">Changes</p></header>'
+            '<p class="lede">依新版手冊照片、領隊通知和你補充的安排整理。行程頁顯示的都是最新內容，這裡只記錄改了什麼。</p>'
+            f'<section class="pl-s"><ul class="facts">{li}</ul></section>'
+            '<p class="pl-foot"><a href="#top">回到首頁</a></p></div></article>')
 
 def render_tips():
     groups = "".join(
@@ -872,14 +877,15 @@ BODY = f'''<div id="app">
 </div>
 {render_guide()}
 {render_gifts()}
-{render_changes()}
 {render_tips()}
+<nav class="wrap foot-nav" aria-label="其他資訊"><a class="foot-link" href="#changes">和原 PDF 的差異 ›</a></nav>
 <footer class="foot wrap"><p>行程依旅行社 PDF 與新版手冊照片整理，並加入你補充的自由活動安排。景點介紹為一般公開的歷史與藝術資料；開放時間、票價與實際行程請以現場及領隊說明為準。</p></footer>
 </main>
 <div id="reader">
 {"".join(render_place(pid) for pid in order + refs)}
 {"".join(render_hotel(hid) for hid in HOTELS)}
 {render_market_overview()}
+{render_changes()}
 {"".join(render_market(mid) for mid in MARKETS)}
 </div>
 </div>

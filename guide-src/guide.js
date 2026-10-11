@@ -145,7 +145,7 @@
   });
 
   // Highlight the day or section (百科・伴手禮・小提醒) in the rail while scrolling.
-  // A section without a chip (和原 PDF 的差異) clears the highlight.
+  // A section without a chip clears the highlight.
   var chips = rail ? rail.querySelectorAll(".chip") : [];
   function setActive(id) {
     for (var i = 0; i < chips.length; i++) {

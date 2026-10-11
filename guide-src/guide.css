@@ -344,3 +344,7 @@ p{margin:0}
 .wx-src{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.74rem;color:var(--ink2)}
 .wx-src a{color:var(--river)}
 .wx-t:empty{display:none}
+
+/* ── bottom links to secondary pages ── */
+.foot-nav{padding-block:18px 0}
+.foot-link{display:block;padding:12px 14px;border:1px solid var(--rule);border-radius:10px;background:var(--sheet);color:var(--garnet);font-weight:700;text-decoration:none}

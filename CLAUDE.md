@@ -5,7 +5,7 @@
 ## 修改流程
 
 1. 不要手改 `index.html`，它是產生出來的。內容都在 `guide-src/`：
-   - `build_guide.py`：每日行程 `DAYS`、住宿 `STAYS` / `HOTEL_Q` / `HOTEL_ZH`、和原 PDF 的差異 `CHANGES`、旅途小提醒 `TIPS`，以及所有版面渲染。
+   - `build_guide.py`：每日行程 `DAYS`、住宿 `STAYS` / `HOTEL_Q` / `HOTEL_ZH`、和原 PDF 的差異 `CHANGES`（內頁 `#changes`，從主頁最下面的連結打開）、旅途小提醒 `TIPS`，以及所有版面渲染。
    - `content_places.py`：景點介紹頁，`P("p-xxx", ...)`。加了 `pins`、`hotel`、`landmarks` 的頁面會畫地圖和店家卡片（例如布拉格口袋名單 `p-prague-picks`，`cat` 用 `sweet` 甜點、`souv` 伴手禮）。
    - `content_hotels.py`：飯店與帝國咖啡館的設施頁，`H("h-xxx", ...)`。
    - `content_shops.py`：伴手禮門市頁，`SH("s-xxx", ...)`。
