@@ -151,6 +151,7 @@ REGIONS = [
   ("southbohemia", "南波希米亞"),
   ("spa", "西波希米亞溫泉區"),
   ("prague", "布拉格"),
+  ("topics", "專題閱讀"),
 ]
 
 CHANGES = [
@@ -199,7 +200,7 @@ TIPS = [
   ("教堂・音樂會", "避免短褲、短裙、露肩和拖鞋。維也納音樂會可以稍微打扮。"),
  ]),
  ("錢・付款", [
-  ("貨幣", "奧地利用歐元，出發前先換好，每人約 €300–500 現金。捷克用克朗，約 1 歐元換 24 克朗，到當地匯兌所再換，也可以用美金換；換之前先問清楚實拿金額。"),
+  ("貨幣", "奧地利用歐元，出發前先換好，每人約 €300–500 現金。捷克用克朗，約 1 歐元換 24 克朗，到當地匯兌所再換，也可以用美金換；換之前先問清楚實拿金額。歐元紙鈔上的建築見[[p-euro|從歐元看西方建築史]]。"),
   ("信用卡", "帶 2–3 張 Visa、Mastercard，需要的話先提高額度。手續費和回饋先問銀行，在歐盟消費多數沒有回饋。Apple Pay、Google Pay 能用的店越來越多。精品等大額消費用刷卡。"),
   ("小費", "餐廳約 5–10%，結帳時直接告訴店員含小費的總額。"),
   ("退稅", "同一天在同一家店消費達門檻可以辦退稅（奧地利 €75.01、捷克 2,001 CZK），在最後離開歐盟的布拉格機場辦理海關蓋章。退稅單要填英文地址，先用[[https://www.post.gov.tw/post/internet/Postal/index.jsp?ID=207|中華郵政中文地址英譯]]翻好。想買的東西先列清單和型號，比較省時間。"),
@@ -457,7 +458,7 @@ def render_place(pid):
         badges.append(f'<span class="badge">{esc(b)}</span>')
     daylinks = "".join(f'<a class="daychip" href="#d{n}">Day {n}・{day_by_n(n)["date"]}</a>' for n in days)
     if ref:
-        daylinks = '<span class="daychip ref">參考・未排入行程</span>'
+        daylinks = '<span class="daychip ref">' + ("專題閱讀" if p.get("topic") else "參考・未排入行程") + '</span>'
     o = [f'<article class="place" id="{pid}" data-label="{esc(p["name"])}" data-back="{back_label}">']
     o.append(f'<div class="readbar"><a class="back" href="{back_href}"><span aria-hidden="true">‹</span> <span class="back-l">{back_label}</span></a>'
              f'<span class="rb-title">{esc(p["name"])}</span></div>')
@@ -472,6 +473,14 @@ def render_place(pid):
     if links:
         o.append('<p class="extlinks">' + "".join(
             f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(t)} ↗</a>' for t, u in links) + '</p>')
+    if p.get("banknotes"):
+        o.append('<section class="pl-s"><h2>七種面額一覽</h2><ol class="bn-list">')
+        for b in p["banknotes"]:
+            rows = "".join(f'<div><dt>{k}</dt><dd>{rich(b[f])}</dd></div>'
+                           for k, f in (("正面", "front"), ("背面", "back"), ("像這座橋", "like"), ("這趟看得到", "trip")))
+            o.append(f'<li class="bn" style="--bn:{b["color"]}"><p class="bn-h"><span class="bn-v">{esc(b["v"])}</span>'
+                     f'<b>{esc(b["style"])}</b><span class="bn-p">{esc(b["period"])}</span></p><dl class="bn-dl">{rows}</dl></li>')
+        o.append('</ol></section>')
     if p.get("pins"):
         key = p["hotel"]
         hll = HOTEL_LL[key]
@@ -762,7 +771,7 @@ def render_guide():
         o.append(f'<h3 class="reg-h">{title}</h3><ul class="g-list">')
         for pid in items:
             p = PLACES[pid]
-            ds = "・".join(f"D{n}" for n in place_days.get(pid, [])) or "參考"
+            ds = "・".join(f"D{n}" for n in place_days.get(pid, [])) or ("專題" if p.get("topic") else "參考")
             o.append(f'<li><a href="#{pid}"><span class="mk {MARK_CLASS[p["mark"]]}" aria-hidden="true">{MARK_GLYPH[p["mark"]]}</span>'
                      f'<span class="g-nm">{esc(p["name"])}</span><span class="g-d">{ds}</span></a></li>')
         o.append('</ul>')
@@ -888,7 +897,7 @@ BODY = f'''<div id="app">
 {render_guide()}
 {render_gifts()}
 {render_tips()}
-<nav class="wrap foot-nav" aria-label="其他資訊"><a class="foot-link" href="#changes">和原 PDF 的差異 ›</a></nav>
+<nav class="wrap foot-nav" aria-label="其他資訊"><a class="foot-link" href="#p-euro">從歐元看西方建築史 ›</a><a class="foot-link" href="#changes">和原 PDF 的差異 ›</a></nav>
 <footer class="foot wrap"><p>行程依旅行社 PDF 與新版手冊照片整理，並加入你補充的自由活動安排。景點介紹為一般公開的歷史與藝術資料；開放時間、票價與實際行程請以現場及領隊說明為準。</p></footer>
 </main>
 <div id="reader">
