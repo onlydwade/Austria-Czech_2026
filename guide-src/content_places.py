@@ -795,7 +795,9 @@ P("p-prague-picks", region="prague", city="布拉格", name="布拉格口袋名�
   short="煙囪捲、冰淇淋、伴手禮店",
   lede="你在 Google 地圖標星號的四家店：兩家煙囪捲、一家義式冰淇淋、一家伴手禮店，都在老城廣場往南到 Můstek 之間，可以排成一條順路的路線。",
   hotel="Hotel KINGS COURT Prague",
-  landmarks=[((50.08748, 14.42133), "老城廣場")],
+  landmarks=[((50.08706, 14.42069), "天文鐘", "Pražský orloj, Praha"),
+             ((50.08778, 14.42278), "泰恩教堂", "Týnský chrám, Praha"),
+             ((50.08982, 14.43265), "帝國咖啡館", "Café Imperial, Na Poříčí 15, Praha 1")],
   pins=[
     dict(name="Staroměstský trdelník", kind="煙囪捲", cat="sweet", q="Staroměstský trdelník, Praha",
          addr="老城廣場西側，聖尼古拉教堂和舊市政廳之間", ll=(50.08756, 14.41984),

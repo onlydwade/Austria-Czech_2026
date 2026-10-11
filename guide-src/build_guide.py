@@ -479,7 +479,7 @@ def render_place(pid):
         for i, s in enumerate(pins):
             s["no"], s["d"] = i + 1, dist_m(hll, s["ll"])
         o.append(pin_map(hll, gmap(key), HOTEL_ZH[key], pins, None, p.get("landmarks", ())))
-        o.append('<section class="pl-s"><h2>店家</h2>' + store_cards(pins, None, HOTEL_Q[key]) + '</section>')
+        o.append('<section class="pl-s"><h2>店家</h2>' + store_cards(pins, None, None) + '</section>')
     for head, items in p["sections"]:
         o.append(f'<section class="pl-s"><h2>{esc(head)}</h2>')
         in_list = False
@@ -558,6 +558,7 @@ def render_hotel(hid):
 # ───────────────────────── 超市頁 ─────────────────────────
 # 地圖底圖用 OpenStreetMap 圖磚（Google 的地圖圖片要付費 API 金鑰），店家和路線連到 Google 地圖。
 MAP_W, MAP_HMIN, MAP_HMAX, MAP_PAD = 512, 300, 512, 56   # 畫布大小（以 zoom z 的像素計），用百分比縮放到螢幕寬度
+MAP_WMIN = 320   # 範圍小的時候畫布變窄，等於再放大一點
 
 def merc(lat, lon, z):
     n = 256 * 2 ** z
@@ -569,13 +570,17 @@ def dist_m(a, b):
     h = math.sin((la2 - la1) / 2) ** 2 + math.cos(la1) * math.cos(la2) * math.sin((lo2 - lo1) / 2) ** 2
     return 2 * 6371000 * math.asin(math.sqrt(h))
 
-def dist_text(d):
+def dist_text(d, prefix="直線約"):
     walk = math.ceil(d * 1.3 / 75)   # 直線距離乘 1.3 當作實際路程，每分鐘走 75 公尺
     far = f"{d / 1000:.1f} km" if d >= 1000 else f"{round(d, -1):.0f} m"
-    return f"直線約 {far}・走路約 {walk} 分鐘"
+    return f"{prefix} {far}・走路約 {walk} 分鐘"
 
 def gdir_url(origin, dest, mode="walking"):
-    return "https://www.google.com/maps/dir/?" + urlencode({"api": "1", "origin": origin, "destination": dest, "travelmode": mode})
+    """origin 為 None 時不指定起點，手機上的 Google 地圖會從目前位置出發。"""
+    params = {"api": "1", "destination": dest, "travelmode": mode}
+    if origin:
+        params = {"api": "1", "origin": origin, "destination": dest, "travelmode": mode}
+    return "https://www.google.com/maps/dir/?" + urlencode(params)
 
 def week_text(hours):
     names = ["週一", "週二", "週三", "週四", "週五", "週六", "週日"]
@@ -600,14 +605,15 @@ def mk_no_cls(s):
     return ("mk-no " + cat_cls(s)).strip()
 
 def pin_map(anchor_ll, anchor_href, anchor_name, stores, near, landmarks=()):
-    """OpenStreetMap 底圖上的飯店（宿）與店家編號；landmarks 是 (座標, 文字) 的參考點。"""
-    pts = [anchor_ll] + [s["ll"] for s in stores if s.get("ll")] + [ll for ll, _ in landmarks]
+    """OpenStreetMap 底圖上的飯店（宿）與店家編號；landmarks 是 (座標, 文字, Google 地圖搜尋字串) 的參考點。"""
+    pts = [anchor_ll] + [s["ll"] for s in stores if s.get("ll")] + [lm[0] for lm in landmarks]
     for z in range(17, 11, -1):
         xy = [merc(a, b, z) for a, b in pts]
         xs, ys = [p[0] for p in xy], [p[1] for p in xy]
         if max(xs) - min(xs) <= MAP_W - 2 * MAP_PAD and max(ys) - min(ys) <= MAP_HMAX - 2 * MAP_PAD:
             break
-    W, H = MAP_W, round(max(MAP_HMIN, max(ys) - min(ys) + 2 * MAP_PAD))
+    W = round(min(MAP_W, max(MAP_WMIN, max(xs) - min(xs) + 2 * MAP_PAD)))
+    H = round(max(MAP_HMIN, max(ys) - min(ys) + 2 * MAP_PAD))
     ox, oy = (max(xs) + min(xs)) / 2 - W / 2, (max(ys) + min(ys)) / 2 - H / 2
     T = 128   # 用 z+1 的圖磚（每張蓋 128 畫布像素），手機上比較清楚
     o = [f'<figure class="mk-map"><div class="mk-canvas" style="aspect-ratio:{W}/{H}">']
@@ -619,8 +625,9 @@ def pin_map(anchor_ll, anchor_href, anchor_name, stores, near, landmarks=()):
     def pos(ll):
         x, y = merc(*ll, z)
         return f"left:{(x - ox) / W * 100:.2f}%;top:{(y - oy) / H * 100:.2f}%"
-    for ll, text in landmarks:
-        o.append(f'<span class="mk-lm" style="{pos(ll)}"><span>{esc(text)}</span></span>')
+    for ll, text, q in landmarks:
+        side = " left" if (merc(*ll, z)[0] - ox) / W > 0.6 else ""   # 靠右的參考點把文字放在左邊，免得被切掉
+        o.append(f'<a class="mk-lm{side}" style="{pos(ll)}" href="{esc(gsearch_url(q))}" target="_blank" rel="noopener"><span>{esc(text)}</span></a>')
     for s in stores:
         if s.get("ll"):
             cls = " ".join(c for c in ("mk-pin", cat_cls(s), "near" if s is near else "") if c)
@@ -646,11 +653,14 @@ def market_map(m, stores, near):
     return pin_map(m["hotel_ll"], gmap(m["key"]), HOTEL_ZH[m["key"]], stores, near)
 
 def store_cards(stores, near, origin_q):
-    """店家卡片：名稱、地址、距離、營業時間、說明、地圖與路線連結。"""
+    """店家卡片：名稱、地址、距離、營業時間、說明、地圖與路線連結。
+    origin_q 為 None 時，路線從手機目前位置出發，距離改寫成「離飯店」。"""
+    route_label = "從飯店的路線" if origin_q else "從目前位置的路線"
     o = ['<ol class="mk-list">']
     for s in stores:
         badge = '<span class="mk-near">離飯店最近</span>' if s is near else ""
-        where = dist_text(s["d"]) if s.get("d") is not None else s.get("where", "")
+        where = (dist_text(s["d"], "直線約" if origin_q else "離飯店直線約") if s.get("d") is not None
+                 else s.get("where", ""))
         dest_mode = "walking" if s.get("d") is not None or s.get("near") else "driving"
         hours = s.get("hours_text") or week_text(s["hours"])
         note = f'<p class="mk-note">{rich(s["note"])}</p>' if s.get("note") else ""
@@ -660,7 +670,7 @@ def store_cards(stores, near, origin_q):
                  f'<p class="mk-meta mk-dist">{esc(where)}</p>'
                  f'<p class="mk-meta">{esc(hours)}</p>{note}'
                  f'<span class="h-links"><a class="h-map" href="{esc(gsearch_url(s["q"]))}" target="_blank" rel="noopener">地圖 ↗</a>'
-                 f'<a class="h-map" href="{esc(gdir_url(origin_q, s["q"], dest_mode))}" target="_blank" rel="noopener">從飯店的路線 ↗</a></span></li>')
+                 f'<a class="h-map" href="{esc(gdir_url(origin_q, s["q"], dest_mode))}" target="_blank" rel="noopener">{route_label} ↗</a></span></li>')
     o.append('</ol>')
     if any(s.get("d") is not None for s in stores):
         o.append('<p class="fine">走路時間用直線距離估算，實際以 Google 地圖路線為準。</p>')
