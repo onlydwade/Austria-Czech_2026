@@ -52,7 +52,7 @@ PLACE_MAP = {
 # 車程日路線（Day 5 鹽礦確切地點未定，不列）
 DAY_ROUTES = {
   2: gdir("Flughafen Wien-Schwechat", "InterContinental Wien, Johannesgasse 28",
-          ["Stift Melk", "Hundertwasserhaus, Kegelgasse 36-38, Wien"]),
+          ["Stift Melk", "Dürnstein, Wachau", "Hundertwasserhaus, Kegelgasse 36-38, Wien"]),
   4: gdir("InterContinental Wien, Johannesgasse 28", "Romantik Hotel Im Weissen Rössl, St. Wolfgang im Salzkammergut",
           ["Hallstatt"]),
   6: gdir("Romantik Hotel Im Weissen Rössl, St. Wolfgang im Salzkammergut", "Hotel Zlatý Anděl, Český Krumlov",

@@ -54,12 +54,13 @@ P("p-wachau", region="vienna", city="多瑙河", name="瓦豪河谷", orig="Wach
       ("維倫多爾夫 Willendorf", "出土「維倫多爾夫的維納斯」的村子。原件在維也納自然史博物館，就在 Day 3 [[p-khm|藝術史博物館]]的正對面。"),
       ("施皮茨 Spitz、聖米迦勒 St. Michael", "施皮茨是葡萄酒村。聖米迦勒的防禦教堂文獻最早記載於 987 年，被視為瓦豪最早的教區。"),
       ("懷森基興 Weißenkirchen", "葡萄園環繞的酒村，也有一座防禦教堂。"),
-      ("杜恩施坦 Dürnstein", "藍白鐘樓和關過獅心王的城堡廢墟，見上面的典故。"),
+      ("杜恩施坦 Dürnstein", "藍白鐘樓和關過獅心王的城堡廢墟，見上面的典故。也是瓦豪小圓麵包 Wachauer Laberl 的發源地。Day 2 有到這裡。"),
       ("毛滕 Mautern、格特魏格 Göttweig", "南岸。毛滕是羅馬時代的要塞；格特魏格是山頂上的本篤會修道院，有「奧地利的蒙特卡西諾」之稱。"),
       ("克雷姆斯／施泰因 Krems/Stein", "瓦豪河谷的東端，老城門 Steiner Tor 是地標。再往東是瓦格拉姆 Wagram 葡萄酒產區和圖爾恩平原 Tullnerfeld，接著就到維也納。"),
       "巴士從維也納到梅爾克，多半走南邊的西高速公路，經過下奧地利首府聖帕爾滕 St. Pölten，不會沿著河谷開。"),
     S("特產",
       ("瓦豪杏桃 Wachauer Marille", "受歐盟原產地保護的杏桃，做成果醬、杏桃白蘭地和杏桃餃子 Marillenknödel。"),
+      ("瓦豪小圓麵包 Wachauer Laberl", "1905 年由杜恩施坦的麵包師傅 Rudolf Schmidl 發明，據說靈感來自法國長棍麵包。圓圓的，比凱撒麵包大，被列為奧地利的傳統食品。Schmidl 麵包店今天還在鎮上，配方是家族祕密，「Schmidls Original Wachauer Laberl」也註冊了商標。"),
       ("白葡萄酒", "主要是綠維特林納 Grüner Veltliner 與麗絲玲 Riesling。瓦豪酒農用三個等級標示酒款：Steinfeder（清爽）、Federspiel（中等）、Smaragd（最濃郁）。Smaragd 是「翡翠」的意思，取自河谷葡萄園裡常見的綠蜥蜴。")),
   ])
 

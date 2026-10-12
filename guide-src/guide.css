@@ -373,3 +373,10 @@ a.mk-lm{text-decoration:none}
 .tf text{fill:var(--ink2);font-size:11px;font-family:var(--f-body)}
 .tf text.em{fill:var(--ink);font-weight:700}
 .tf figcaption{font-size:.85rem;color:var(--ink2);text-align:center;margin-top:6px}
+/* 每天的旅途紀錄 */
+.daylog{padding:12px 14px;background:var(--sheet);border:1px solid var(--rule);border-left:4px solid var(--river);border-radius:10px}
+.daylog-h{font-size:.8rem;font-weight:700;letter-spacing:.06em;color:var(--river);margin-bottom:6px}
+.daylog dl{margin:0;display:grid;gap:6px}
+.daylog dl div{display:grid;grid-template-columns:4.5em 1fr;gap:8px}
+.daylog dt{font-size:.85rem;font-weight:700;color:var(--ink2)}
+.daylog dd{margin:0;font-size:.92rem;line-height:1.65}
