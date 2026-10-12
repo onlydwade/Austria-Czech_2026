@@ -38,7 +38,7 @@ DAYS = [
                 ("中午", "午餐：肉醬斜管麵、香草奶油烤雞胸配奶油飯、杏桃蛋糕。", False),
                 ("下午", "[[p-melk|梅爾克修道院]]入內導覽，之後前往[[p-hundertwasser|百水公寓]]（約 1.5 小時）。", False),
                 ("傍晚", "百水公寓觀光，再到飯店（約 10 分鐘）。", False),
-                ("晚上", "晚餐：[[p-vienna|維也納水煮牛 Tafelspitz]]。", False)],
+                ("晚上", "晚餐：[[p-vienna|維也納水煮牛 Tafelspitz]]。吃法見[[p-dining|歐洲用餐禮儀]]。", False)],
       extra=["梅爾克修道院的圖書館 2026 年整修中，可能看到鷹架；大陽台改走臨時便橋。導覽後可以逛北堡壘的露台和修道院商店（自製琴酒、啤酒、藥草鹽），見[[p-melk|梅爾克修道院]]。沿河地名見[[p-wachau|瓦豪河谷]]。"],
       stops=[("p-vienna", ""), ("p-melk", "入內導覽・門票已含"), ("p-hundertwasser", ""), ("p-wachau", "延伸閱讀")],
       meals=[("早", "機上精選美食"), ("午", "肉醬斜管麵佐帕達諾乾酪・香草奶油烤雞胸配蔬菜和奶油飯・杏桃蛋糕佐鮮奶油＋酒水"),
@@ -212,7 +212,7 @@ TIPS = [
   ("打招呼", "進餐廳、小店先打招呼，離開說謝謝。奧地利：Grüß Gott 或 Guten Tag（你好）、Danke（謝謝）。捷克：Dobrý den（你好）、Děkuji（謝謝）。"),
   ("開動・乾杯", "開動前說 Guten Appetit（奧）、Dobrou chuť（捷）。乾杯說 Prost（奧）、Na zdraví（捷）。大家都拿到酒才開始，跟同桌每個人碰杯，碰杯時看著對方的眼睛，不看會被當成沒禮貌。"),
   ("點水", "水要另外點、另外付錢，礦泉水常常預設是氣泡水。不要氣泡要說清楚：奧地利說 stilles Wasser，捷克說 neperlivá。維也納咖啡館點咖啡會附一杯水。"),
-  ("吃相", "左手叉、右手刀。喝湯、吃麵盡量不要發出聲音。吃完把刀叉並排斜放在盤子上，服務生就知道可以收。"),
+  ("吃相", "左手叉、右手刀，餐具由外往內用。喝湯、吃麵盡量不要發出聲音。餐具擺放、刀叉暗號、上菜順序、麵包怎麼吃，見[[p-dining|歐洲用餐禮儀]]。"),
   ("麵包・小菜", "桌上的麵包、小菜不一定免費。布拉格有些餐廳吃了會算錢，甚至沒吃也列在帳單上；不要的可以請服務生收走，結帳時看一下帳單。"),
   ("結帳", "服務生不會主動拿帳單，不會催你走。要結帳就舉手或用眼神示意，說 Zahlen, bitte（奧）或 Zaplatím, prosím（捷）。在座位上結，服務生會帶刷卡機來，常會問一起付還是分開付。"),
   ("小費", "台灣沒有，這裡要給，約 5–10%，或湊個整數。結帳時直接告訴服務生含小費的總額，例如帳單 €27 就說「30」，不要把錢留在桌上就走。布拉格觀光區有些帳單已經加了服務費（servis、service charge），有加就不用再給。團體餐的小費問領隊。"),
@@ -461,6 +461,49 @@ def render_day(d):
     o.append('</section>')
     return "".join(o)
 
+def _fork(x, y, ang):
+    """叉子：握柄在 (x, y)，往 ang 度方向伸出，長約 66。"""
+    return (f'<g transform="translate({x},{y}) rotate({ang})"><path d="M0,0H52M52,-5V5M52,-5H66M52,0H66M52,5H66" '
+            'stroke-width="2"/></g>')
+
+def _knife(x, y, ang):
+    return (f'<g transform="translate({x},{y}) rotate({ang})"><path d="M0,0H36" stroke-width="4"/>'
+            '<path d="M36,-3L64,-2Q69,1 63,3L36,3Z" stroke-width="1.6"/></g>')
+
+def _spoon(x, y, ang):
+    return (f'<g transform="translate({x},{y}) rotate({ang})"><path d="M0,0H48" stroke-width="3"/>'
+            '<ellipse cx="58" cy="0" rx="11" ry="6.5" stroke-width="1.8"/></g>')
+
+def table_figure():
+    """餐具擺放（俯視）與刀叉暗號，兩張 SVG。顏色跟著主題變。"""
+    setting = ('<svg viewBox="0 0 340 236" role="img" aria-label="西式餐具擺放俯視圖">'
+               '<circle class="pl" cx="70" cy="70" r="24"/>' + '<g class="u">' + _knife(52, 82, -28) + '</g>'
+               '<circle class="pl" cx="170" cy="140" r="48"/><circle class="rim" cx="170" cy="140" r="35"/>'
+               '<text x="170" y="144" text-anchor="middle">主餐盤</text>'
+               # 叉子在左（外紅內黑），刀、湯匙在右
+               '<g class="u first">' + _fork(92, 196, -90) + '</g><g class="u">' + _fork(110, 196, -90) + '</g>'
+               '<g class="u">' + _knife(232, 196, -90) + '</g><g class="u first">' + _knife(248, 196, -90) + _spoon(266, 196, -90) + '</g>'
+               # 盤子上方：甜點匙（柄朝右）、甜點叉（柄朝左）
+               '<g class="u">' + _spoon(206, 66, 180) + _fork(136, 82, 0) + '</g>'
+               '<circle class="gl" cx="236" cy="40" r="12"/><circle class="gl" cx="262" cy="52" r="10"/><circle class="gl" cx="284" cy="66" r="9"/>'
+               '<text x="70" y="110" text-anchor="middle">麵包盤</text>'
+               '<text x="212" y="78">甜點</text>'
+               '<text x="262" y="90" text-anchor="middle">水杯・酒杯</text>'
+               '<text x="170" y="226" text-anchor="middle" class="em">紅色＝先上的前菜和湯用，其餘＝主菜用</text></svg>')
+    cx1, cx2, cy = 85, 255, 66
+    signals = ('<svg viewBox="0 0 340 146" role="img" aria-label="刀叉暗號：休息中與吃完了">'
+               f'<circle class="pl" cx="{cx1}" cy="{cy}" r="48"/><circle class="rim" cx="{cx1}" cy="{cy}" r="35"/>'
+               '<g class="u">' + _fork(42, 104, -55) + _knife(128, 104, -125) + '</g>'
+               f'<circle class="pl" cx="{cx2}" cy="{cy}" r="48"/><circle class="rim" cx="{cx2}" cy="{cy}" r="35"/>'
+               '<g class="u">' + _fork(300, 84, -150) + _knife(292, 98, -150) + '</g>'
+               f'<text x="{cx1}" y="132" text-anchor="middle" class="em">休息中：擺成八字</text>'
+               f'<text x="{cx2}" y="132" text-anchor="middle" class="em">吃完了：並排、柄朝右下</text></svg>')
+    return ('<section class="pl-s"><h2>餐具擺放圖</h2><figure class="tf">' + setting +
+            '<figcaption>叉子在左，刀和湯匙在右，由外往內用。麵包在左、杯子在右。</figcaption></figure>'
+            '<figure class="tf">' + signals + '<figcaption>刀叉的暗號，服務生看了就知道要不要收盤子。</figcaption></figure></section>')
+
+FIGURES = {"table": table_figure}
+
 def render_place(pid):
     p = PLACES[pid]
     days = place_days.get(pid, [])
@@ -494,6 +537,8 @@ def render_place(pid):
     if links:
         o.append('<p class="extlinks">' + "".join(
             f'<a href="{esc(u)}" target="_blank" rel="noopener">{esc(t)} ↗</a>' for t, u in links) + '</p>')
+    if p.get("figure"):
+        o.append(FIGURES[p["figure"]]())
     if p.get("banknotes"):
         o.append('<section class="pl-s"><h2>七種面額一覽</h2><ol class="bn-list">')
         for b in p["banknotes"]:
@@ -918,7 +963,7 @@ BODY = f'''<div id="app">
 {render_guide()}
 {render_gifts()}
 {render_tips()}
-<nav class="wrap foot-nav" aria-label="其他資訊"><a class="foot-link" href="#p-euro">從歐元看西方建築史 ›</a><a class="foot-link" href="#changes">和原 PDF 的差異 ›</a></nav>
+<nav class="wrap foot-nav" aria-label="其他資訊"><a class="foot-link" href="#p-euro">從歐元看西方建築史 ›</a><a class="foot-link" href="#p-dining">歐洲用餐禮儀 ›</a><a class="foot-link" href="#changes">和原 PDF 的差異 ›</a></nav>
 <footer class="foot wrap"><p>行程依旅行社 PDF 與新版手冊照片整理，並加入你補充的自由活動安排。景點介紹為一般公開的歷史與藝術資料；開放時間、票價與實際行程請以現場及領隊說明為準。</p></footer>
 </main>
 <div id="reader">

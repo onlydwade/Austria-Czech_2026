@@ -362,3 +362,14 @@ a.mk-lm{text-decoration:none}
 .bn-dl div{display:grid;grid-template-columns:4.6em 1fr;gap:8px}
 .bn-dl dt{font-size:.78rem;font-weight:700;color:var(--ink2);padding-top:2px}
 .bn-dl dd{margin:0;font-size:.92rem;line-height:1.7}
+/* 用餐禮儀：餐具圖 */
+.tf{margin:10px 0 14px;color:var(--ink)}
+.tf svg{display:block;width:100%;max-width:420px;height:auto;margin-inline:auto}
+.tf .pl{fill:var(--sheet);stroke:var(--ink2);stroke-width:1.5}
+.tf .rim{fill:none;stroke:var(--rule);stroke-width:1.2}
+.tf .gl{fill:none;stroke:var(--ink2);stroke-width:1.5}
+.tf .u{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.tf .first{color:var(--garnet)}
+.tf text{fill:var(--ink2);font-size:11px;font-family:var(--f-body)}
+.tf text.em{fill:var(--ink);font-weight:700}
+.tf figcaption{font-size:.85rem;color:var(--ink2);text-align:center;margin-top:6px}

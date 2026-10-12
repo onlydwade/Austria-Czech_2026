@@ -6,7 +6,7 @@
 
 1. 不要手改 `index.html`，它是產生出來的。內容都在 `guide-src/`：
    - `build_guide.py`：每日行程 `DAYS`、住宿 `STAYS` / `HOTEL_Q` / `HOTEL_ZH`、和原 PDF 的差異 `CHANGES`（內頁 `#changes`，從主頁最下面的連結打開）、旅途小提醒 `TIPS`，以及所有版面渲染。
-   - `content_places.py`：景點介紹頁，`P("p-xxx", ...)`。加了 `pins`、`hotel`、`landmarks`（`(座標, 文字, Google 地圖搜尋字串)`）的頁面會畫地圖和店家卡片，路線從手機目前位置出發（例如布拉格口袋名單 `p-prague-picks`，`cat` 用 `sweet` 甜點、`souv` 伴手禮）。專題頁放在 `region="topics"`、加 `ref=True, topic=True`，例如「從歐元看西方建築史」`p-euro`（`banknotes` 畫成面額卡片，不放導遊相簿的原圖）。
+   - `content_places.py`：景點介紹頁，`P("p-xxx", ...)`。加了 `pins`、`hotel`、`landmarks`（`(座標, 文字, Google 地圖搜尋字串)`）的頁面會畫地圖和店家卡片，路線從手機目前位置出發（例如布拉格口袋名單 `p-prague-picks`，`cat` 用 `sweet` 甜點、`souv` 伴手禮）。專題頁放在 `region="topics"`、加 `ref=True, topic=True`，例如「從歐元看西方建築史」`p-euro`（`banknotes` 畫成面額卡片，不放導遊相簿的原圖）、「歐洲用餐禮儀」`p-dining`（`figure="table"` 會畫 `build_guide.FIGURES` 裡的餐具擺放 SVG）。專題頁從主頁最下面的連結打開。
    - `content_hotels.py`：飯店與帝國咖啡館的設施頁，`H("h-xxx", ...)`。
    - `content_shops.py`：伴手禮門市頁，`SH("s-xxx", ...)`。
    - `content_gifts.py`：伴手禮清單、照天數買、帶回台灣注意事項。
