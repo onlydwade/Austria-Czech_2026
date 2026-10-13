@@ -29,6 +29,11 @@ GIFTS_MINE = [
     "中間是開心果杏仁膏，外面包一層果仁糖，最外層裹黑巧克力。1890 年由薩爾茲堡甜點師保羅・弗斯特發明，故事見[[p-sbg-altstadt|薩爾茲堡老城]]頁。",
     "銀藍色包裝的「Original Salzburger Mozartkugel」是 Fürst 自家手工做的，只在 Fürst 的店買得到，老店在 Brodgasse 13。紅金色包裝的 Mirabell 是量產品牌，超市就有，便宜很多，適合大量分送。",
     [("Fürst 老店", "Café Konditorei Fürst, Brodgasse 13, Salzburg")], mine=True, shop="s-furst"),
+  G("香草葡萄汁 Kräutertraube", "Andert Kräutertraube",
+    "Day 3 在維也納 [[https://maps.app.goo.gl/XJfgMd58ohyjYwNa7|Buxbaum]] 午餐喝到；奧地利酒鋪、網路商店（例如 [[https://weinskandal.at/products/krautertraube-2023-biosaft-andert|Weinskandal]]）",
+    "布根蘭邦 Pamhagen 的 Andert 酒莊做的有機葡萄汁，加了 20 多種草地香草一起浸泡。葡萄提早採收，留住酸度平衡甜味，喝得到薄荷和百里香。不含酒精，但裝在葡萄酒瓶裡，看起來很像白酒。",
+    "最快的方法是問 Buxbaum 能不能外帶一瓶，或在哪裡買得到。捷克只查到網路商店有列，沒找到確定有賣的實體店，想買就在奧地利買（最晚 Day 6 薩爾茲堡）。不含酒精，不占酒類免稅額；但它是液體，要放託運行李。",
+    [("Buxbaum 餐廳", "Buxbaum, Grashofgasse 3, 1010 Wien")], mine=True),
 ]
 
 GIFTS_AT = [
@@ -80,7 +85,7 @@ GIFTS_CZ = [
 
 # 照天數的購物路線：(天數文字, 錨點日, 可以買)
 SHOP_PLAN = [
-  ("Day 2–3", 2, "維也納：Manner 威化餅、薩赫蛋糕、杏桃果醬、超市版莫札特巧克力"),
+  ("Day 2–3", 2, "維也納：Manner 威化餅、薩赫蛋糕、杏桃果醬、超市版莫札特巧克力、香草葡萄汁 Kräutertraube"),
   ("Day 4–5", 4, "湖區：哈斯達特鹽"),
   ("Day 6", 6, "薩爾茲堡：Fürst 莫札特巧克力；維也納沒買到薩赫蛋糕可以在這裡補。晚上庫倫洛夫：曼菲蘿、菠丹妮"),
   ("Day 7", 7, "巴德傑維契：Budvar 啤酒（瓶裝重，要託運）"),
