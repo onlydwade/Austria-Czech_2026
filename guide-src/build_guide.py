@@ -6,7 +6,7 @@ from content_hotels import HOTELS
 from content_shops import SHOPS
 from content_maps import PLACE_MAP, DAY_ROUTES, MEET_MAP, PRG_T1_MAP, WX_LOCS, DAY_WX
 HOTELS.update(SHOPS)  # shop pages share the hotel page layout
-from content_gifts import GIFTS_MINE, GIFTS_AT, GIFTS_CZ, SHOP_PLAN, GIFT_TIPS
+from content_gifts import GIFTS_MINE, GIFTS_AT, GIFTS_CZ, GIFTS_MARKET, SHOP_PLAN, GIFT_TIPS
 from content_markets import MARKETS, OVERVIEW, WD
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
@@ -904,6 +904,7 @@ def render_gifts():
     o.append('<h3 class="reg-h">你的清單</h3><ul class="gift-list">' + "".join(render_gift(g) for g in GIFTS_MINE) + '</ul>')
     o.append('<h3 class="reg-h">推薦加買・奧地利</h3><ul class="gift-list">' + "".join(render_gift(g) for g in GIFTS_AT) + '</ul>')
     o.append('<h3 class="reg-h">推薦加買・捷克</h3><ul class="gift-list">' + "".join(render_gift(g) for g in GIFTS_CZ) + '</ul>')
+    o.append('<h3 class="reg-h">超市就買得到</h3><ul class="gift-list">' + "".join(render_gift(g) for g in GIFTS_MARKET) + '</ul>')
     rows = "".join(f'<tr><td class="p-d"><a href="#d{n}">{esc(t)}</a></td><td>{rich(x)}</td></tr>' for t, n, x in SHOP_PLAN)
     o.append(f'<h3 class="reg-h">照天數買</h3><div class="plan"><table><tbody>{rows}</tbody></table></div>')
     li = "".join(f'<li><b>{esc(k)}</b><span>{rich(v)}</span></li>' for k, v in GIFT_TIPS)
