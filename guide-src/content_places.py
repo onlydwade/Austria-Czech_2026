@@ -421,6 +421,9 @@ P("p-krumlov", region="southbohemia", city="南波希米亞", name="庫倫洛夫
       ("五瓣玫瑰節", "每年 6 月，全鎮換上中世紀服裝慶祝玫瑰家族的時代。今晚穿中世紀服飾吃晚宴，就是這種氣氛。")),
     S("現場小提醒",
       "老城都是石板坡路，穿好走的鞋。飯店就在主廣場上，晚上遊客散去後再出門走走，是整個小鎮最安靜的時候。"),
+    S("拍照點",
+      ("觀景點 Vyhlídka", "Vyhlídka 是捷克文「觀景台」。這個點可以拍到整個小鎮・[[https://maps.app.goo.gl/YGuowpQEMEAzRRVU9|Google 地圖 ↗]]"),
+      ("斗篷橋", "上面「城堡必看」的斗篷橋，也是拍老城全景的位置。")),
   ])
 
 P("p-budejovice", region="southbohemia", city="南波希米亞", name="巴德傑維契", orig="České Budějovice", mark="▲",
