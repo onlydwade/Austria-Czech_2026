@@ -130,7 +130,7 @@ DAYS = [
              "維也納沒買到薩赫蛋糕的話，薩爾茲堡的[[s-sacher|Hotel Sacher]]也有門市，在米拉貝爾花園南邊的河岸。"],
       log=[("集合", "14:30，Billa 超市（Griesgasse 19/21）右前方的廣場・[[https://maps.app.goo.gl/4Gm7ie2HEXUbXkz16|地圖 ↗]]"),
            ("導遊推薦", "[[https://maps.app.goo.gl/i4p4RuBkGiRpjqrC6|TEA & Co 茶葉店]]（Griesgasse 7）、[[https://maps.app.goo.gl/QMUDqxMFJwGmxxKQ8|BURGERISTA 漢堡]]（Griesgasse 15），都在集合點附近的 Griesgasse 上。"),
-           ("拍照點", "庫倫洛夫的觀景點 Vyhlídka（捷克文「觀景台」），可以拍整個小鎮・[[https://maps.app.goo.gl/YGuowpQEMEAzRRVU9|Google 地圖 ↗]]。")],
+           ("拍照點", "庫倫洛夫兩個拍小鎮的點：觀景點 Vyhlídka（捷克文「觀景台」）・[[https://maps.app.goo.gl/YGuowpQEMEAzRRVU9|地圖 ↗]]；城堡景觀平台 Viewpoint（K Zámecké zahradě 60）・[[https://maps.app.goo.gl/n4ME7B4koDytBdBP7|地圖 ↗]]。")],
       meals=[("早", "飯店內早餐，07:00"), ("午", "自理，老熱狗攤等推薦見上面"), ("晚", "穿越時光著中古世紀服飾 享受庫倫洛夫晚宴＋酒水")],
       hotel=("Hotel Zlatý Anděl", "金色天使飯店，就在庫倫洛夫的主廣場上，出門就是老城。")),
  dict(n=7, date="10/17", wd="六", city="南波希米亞 → 溫泉區", theme="百威啤酒的故鄉・瑪麗安斯凱",
