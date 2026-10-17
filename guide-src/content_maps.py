@@ -57,10 +57,10 @@ DAY_ROUTES = {
           ["Hallstatt"]),
   6: gdir("Romantik Hotel Im Weissen Rössl, St. Wolfgang im Salzkammergut", "Hotel Zlatý Anděl, Český Krumlov",
           ["Altstadt Salzburg"]),
-  7: gdir("Hotel Zlatý Anděl, Český Krumlov", "Rubezahl Marienbad Luxury Historical Castle Hotel & Golf, Mariánské Lázně",
+  7: gdir("Hotel Zlatý Anděl, Český Krumlov", "Schlosshotel Rübezahl, Mariánské Lázně 591, 353 01 Mariánské Lázně",
           ["Náměstí Přemysla Otakara II., České Budějovice"]),
-  8: gdir("Rubezahl Marienbad Luxury Historical Castle Hotel & Golf, Mariánské Lázně", "Hotel KINGS COURT, U Obecního domu 3, Praha",
-          ["Mlýnská kolonáda, Karlovy Vary"]),
+  8: gdir("Schlosshotel Rübezahl, Mariánské Lázně 591, 353 01 Mariánské Lázně", "Hotel KINGS COURT, U Obecního domu 3, Praha",
+          ["Kolonáda, Mariánské Lázně", "Mlýnská kolonáda, Karlovy Vary"]),
 }
 
 MEET_MAP = gsearch("Taoyuan International Airport Terminal 1")

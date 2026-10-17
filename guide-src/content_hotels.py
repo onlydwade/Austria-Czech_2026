@@ -91,11 +91,12 @@ H("h-andel", key="Hotel Zlatý Anděl", zh="金色天使飯店", en="Hotel Zlat�
 
 H("h-rubezahl", key="Luxury Historical Castle Hotel & Golf", zh="魯伯薩爾城堡飯店", en="Rübezahl Marienbad Luxury Historical Castle Hotel & Golf",
   city="瑪麗安斯凱", stay="10/17・一晚", day=7, badges=[],
-  links=[("Google 地圖", GMAP("Rubezahl Marienbad Luxury Historical Castle Hotel & Golf, Mariánské Lázně")),
+  links=[("Google 地圖", "https://maps.app.goo.gl/EqKZzHVeMN6Hh6Tm8"),
          ("官方網站", "https://www.castlehotelcollection.com/rubezahl-castle/")],
   lede="1903 年完成的城堡式建築，位在瑪麗安斯凱溫泉區外圍的森林邊。2015 年整修後重新開幕，新增了羅馬浴場風格的 SPA。",
   sections=[
     S("基本資訊",
+      ("地址", "Mariánské Lázně 591。德文名 Schlosshotel Rübezahl。"),
       ("建築", "1903 年完成，由維也納建築師阿諾德・海曼設計。名字取自德捷邊境巨人山脈的山精傳說「魯伯薩爾」。"),
       ("房間", "41 間客房與套房，浴室使用大理石和縞瑪瑙，附按摩淋浴。"),
       ("高爾夫", "約 1 公里外就是 1905 年開幕的瑪麗安斯凱皇家高爾夫俱樂部。")),
