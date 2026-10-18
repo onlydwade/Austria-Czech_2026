@@ -483,7 +483,7 @@ P("p-karlovy", region="spa", city="西波希米亞", name="卡羅維瓦利", ori
       ("溫泉噴泉 Vřídlo", "全城最熱的泉，約 72°C，噴高可達十幾公尺。・[[https://www.google.com/maps/search/?api=1&query=V%C5%99%C3%ADdeln%C3%AD+kolon%C3%A1da%2C+Karlovy+Vary|地圖 ↗]]"),
       ("磨坊柱廊 Mlýnská kolonáda", "1871–1881 年完成，124 根科林斯柱撐起的長廊，裡面有 5 個泉口。設計者約瑟夫・吉特克也是布拉格[[p-narodni|國家劇院]]的建築師。"),
       ("市場柱廊與公園柱廊", "前者是白色的木雕蕾絲風格，後者是鑄鐵結構，風格完全不同。"),
-      ("普普大飯店 Grandhotel Pupp", "007 電影《皇家夜總會》（2006）在這裡取景，片中當作蒙特內哥羅的豪華飯店。")),
+      ("普普大飯店 Grandhotel Pupp", "世界上最古老的飯店之一。1701 年這裡蓋了卡羅維瓦利第一座社交舞廳「薩克森廳」；18 世紀後期，本地的糕餅師傅約翰・格奧爾格・普普買下這些房子開旅館，飯店就以他命名。現在看到的新巴洛克大樓，是普普家族和維也納的 Fellner & Helmer 建築事務所在 19、20 世紀之交改建的。共產時期 1951 年改名「莫斯科大飯店」，1989 年才改回原名。007 電影《皇家夜總會》（2006）在這裡取景，片中當作蒙特內哥羅的豪華飯店；同年的電影《Last Holiday》也在這裡拍・[[https://www.google.com/maps/search/?api=1&query=Grandhotel+Pupp%2C+M%C3%ADrov%C3%A9+n%C3%A1m%C4%9Bst%C3%AD+2%2C+Karlovy+Vary|地圖 ↗]]")),
     S("一定要試",
       ("溫泉杯", "手把本身就是吸管的陶瓷杯，可以在各個泉口直接接水喝。泉水偏鹹、帶鐵味，每個泉口的溫度不同。請小口喝，喝多了會跑廁所。"),
       ("溫泉薄餅 Oplatky", "大片圓形的薄脆餅，夾榛果、巧克力、香草等內餡，現烤的溫溫的最好吃。傳統做法會用溫泉水和麵糊。柱廊一帶到處都有店家・[[https://www.google.com/maps/search/?api=1&query=L%C3%A1ze%C5%88sk%C3%A9+oplatky%2C+Karlovy+Vary|薄餅店家地圖 ↗]]"),
