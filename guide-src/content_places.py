@@ -833,7 +833,7 @@ P("p-imperial", region="prague", city="布拉格", name="帝國咖啡館", orig=
       ("主餐", "松露麵疙瘩佐香檳醬，或純素蔬菜綠扁豆咖哩。這幾道是菜單上出現過的，菜單會換，以現場為準。"),
       ("甜點", "帝國蛋糕或當天的蛋糕都可以。"),
       ("要小心的", "捷克菜的配菜常混培根丁，例如高麗菜、馬鈴薯；凱撒沙拉的醬汁通常有鯷魚。點的時候說一聲不要肉和魚。"),
-      ("怎麼說", "No meat and no fish, please.")),
+      ("怎麼說", "歐洲常有人把魚當成素食可以吃的，只說 vegetarian 可能還是端來魚。直接講：No meat and no fish, please. 捷克文：Bez masa a bez ryb, prosím.")),
   ])
 
 P("p-slavia", region="prague", city="布拉格", name="斯拉維亞咖啡館", orig="Café Slavia", mark="", ref=True,
