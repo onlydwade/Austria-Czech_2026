@@ -915,6 +915,36 @@ P("p-prague-picks", region="prague", city="布拉格", name="布拉格口袋名�
 # ───────────────────────── 專題：從歐元看西方建築史 ─────────────────────────
 # 整理自導遊分享的相簿，依歐洲央行、奧地利國家銀行等資料查證改寫。紙鈔圖片有版權，不放原圖，用面額顏色的色塊表示。
 # banknotes 會畫成面額卡片；「像這座橋」是導遊配對的真實橋梁，紙鈔上的橋本身是虛構的。
+P("p-prague-guide", region="prague", city="布拉格", name="導遊推薦清單", orig="Restaurants・Shopping", mark="", ref=True,
+  badges=[],
+  short="捷克菜、異國料理、購物中心與超市",
+  lede="導遊推薦的布拉格餐廳和購物中心。這趟沒有排進行程，整理起來留給下次來布拉格用。營業時間以 Google 地圖和現場為準。",
+  sections=[
+    S("捷克料理",
+      ("Lokál Dlouhááá", "Dlouhá 街上的捷克啤酒館，以新鮮的 Pilsner Urquell 桶裝生啤和捷克家常菜出名・[[https://maps.app.goo.gl/KEFRAjEry82GMnGf9|地圖 ↗]]"),
+      ("U Pivrnce", "導遊說的「塗鴉餐廳」，牆上畫滿漫畫插圖的捷克菜餐廳・[[https://maps.app.goo.gl/hkYrDq35mPFJXiUL7|地圖 ↗]]"),
+      ("U Špirků", "捷克菜餐廳，店裡有古董機械鐘・[[https://maps.app.goo.gl/jg6Fdc5KS2iiumY57|地圖 ↗]]"),
+      ("Kantýna", "肉舖加自助式餐廳兼酒吧，開在 19 世紀的舊銀行大樓裡，保留了原本的壁畫和雕塑。進門拿一張點餐卡，到各櫃台點菜；不接受訂位・[[https://maps.app.goo.gl/mFvEoG4rJCr8YVGB8|地圖 ↗]]")),
+    S("異國料理：飯店附近",
+      ("IN TOWN Prague 陣堂子火鍋", "火鍋・[[https://maps.app.goo.gl/yiggx5xtMNqrAHxVA|地圖 ↗]]"),
+      ("BASU Hot Pot 巴蜀火鍋", "火鍋・[[https://maps.app.goo.gl/YDhheaiaHyBri2UFA|地圖 ↗]]"),
+      ("Ali Baba Kebap", "土耳其速食・[[https://maps.google.com/?cid=17516868746896469480|地圖 ↗]]"),
+      ("Anatolia Grill Restaurant", "土耳其速食・[[https://maps.google.com/?cid=14251470343246368648|地圖 ↗]]"),
+      ("K-Remember", "越南料理，導遊說是在地人推薦・[[https://maps.google.com/?cid=13065393675917545575|地圖 ↗]]"),
+      ("Pho Viet T&T", "越南河粉・[[https://maps.app.goo.gl/mLQrtCRjEv8qzEsZ8|地圖 ↗]]"),
+      ("L'Osteria - Masaryčka", "義大利料理，在札哈・哈蒂建築事務所設計的 Masaryčka 大樓裡・[[https://maps.google.com/?cid=4288499613684737051|地圖 ↗]]")),
+    S("連鎖速食",
+      ("Bageterie Boulevard", "捷克最大的速食品牌，主打法國麵包三明治。導遊說店裡有免費廁所。"),
+      ("國際連鎖", "麥當勞、肯德基、Popeyes。")),
+    S("購物中心",
+      ("Palladium", "共和廣場旁，就在飯店對面。有 dm 藥妝和 Albert 超市。約 07:00–21:00，各樓層不同・[[https://maps.google.com/?cid=14146572562288771636|地圖 ↗]]"),
+      ("OC Quadrio", "蓋在地鐵 B 線（黃線）Národní třída 站上方，有 Tesco 超市，還有蝴蝶雕像。約 07:00–22:00，各樓層不同・[[https://www.google.com/maps/search/?api=1&query=OC+Quadrio%2C+Sp%C3%A1len%C3%A1+22%2C+Praha|地圖 ↗]]"),
+      ("卡夫卡旋轉頭像", "Quadrio 門口，大衛・切爾尼的作品：42 層不鏽鋼片各自旋轉，轉到對齊時拼出卡夫卡的臉。導遊說 08:00–21:00 每個整點轉 15 分鐘；也有資料寫到 19:00，而且曾停機維修，以現場為準・[[https://maps.app.goo.gl/WEipkTWgH7Lg2d4W8|地圖 ↗]]"),
+      ("Florentinum", "飯店附近的辦公兼購物中心，約 07:00–21:00，各樓層不同・[[https://maps.google.com/?cid=10440517666670143284|地圖 ↗]]")),
+    S("超市",
+      "BILLA、Albert、Lidl。飯店附近的超市和營業時間見[[m-prague|附近超市]]。"),
+  ])
+
 P("p-euro", region="topics", city="專題", name="從歐元看西方建築史", orig="Ages and styles of Europe", mark="", ref=True,
   topic=True,
   short="七種面額、七個建築時期",
