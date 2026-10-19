@@ -204,7 +204,7 @@ DAYS = [
                 ("中午", "午餐：沙拉、烤豬腳、起司蛋糕，配餐廳自釀的啤酒。", False),
                 ("14:30 起", "自由活動，先去[[https://www.google.com/maps/search/?api=1&query=Mucha+Museum%2C+Savarin%2C+Na+P%C5%99%C3%ADkop%C4%9B+10%2C+Praha|慕夏美術館新館]]：2025 年 2 月在 Na Příkopě 的 Savarin 宮開幕，約 150 件展品，其中約 90 件是原作。查到的開放時間是每天 10:00–18:00，全票 300 克朗，以官網為準。從飯店走路約 10 分鐘。", True),
                 ("之後", "逛街。公司提供 24 小時電車地鐵票。想去[[p-parizska|巴黎街精品街]]逛 Celine・[[https://www.google.com/maps/search/?api=1&query=CELINE+Prague%2C+Pa%C5%99%C3%AD%C5%BEsk%C3%A1+15%2C+Praha+1|Google 地圖 ↗]]。煙囪捲、冰淇淋、伴手禮店見[[p-prague-picks|布拉格口袋名單]]", True),
-                ("18:00", "[[p-imperial|帝國咖啡館]]晚餐（6 位，已訂位）・[[h-imperial|設施介紹]]・[[https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+Imperial%2C+Na+Po%C5%99%C3%AD%C4%8D%C3%AD+15%2C+Praha+1|Google 地圖 ↗]]", True)],
+                ("18:00", "[[p-imperial|帝國咖啡館]]晚餐（6 位，已訂位）・[[p-imperial|點菜建議]]・[[h-imperial|設施介紹]]・[[https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+Imperial%2C+Na+Po%C5%99%C3%AD%C4%8D%C3%AD+15%2C+Praha+1|Google 地圖 ↗]]", True)],
       stops=[("p-vltava", "船票已含"), ("p-vysehrad", ""), ("p-tram", "特別安排"), ("p-klementinum", "電車沿途"), ("p-narodni", "電車沿途"), ("p-dancing", ""),
              ("p-parizska", "想去 Celine"), ("p-prague-picks", "煙囪捲・冰淇淋"), ("p-imperial", "18:00 已訂位")],
       extra=["領隊建議的自由活動：",
