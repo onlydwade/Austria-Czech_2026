@@ -147,6 +147,7 @@ DAYS = [
                 ("晚上", "飯店晚餐：蔬菜奶油濃湯、豬小里肌佐蘑菇醬、蘋果派。", False)],
       stops=[("p-krumlov", "上午導覽"), ("p-budejovice", ""), ("p-marienbad", "")],
       extra=["自由活動到 11:45，時間不長。想拍照可以去[[p-krumlov|庫倫洛夫頁]]的拍照點，或在城堡區走走。"],
+      log=[("許願雕像", "飯店的山神魯伯薩爾雕像：繞著它單腳跳 5 圈，再摸腰帶許願。雕像的傳說見[[h-rubezahl|飯店介紹]]。")],
       meals=[("早", "飯店內早餐，07:00，在二樓"),
              ("午", "綜合生菜沙拉佐酒醋・350 克烤豬肋排配芥末、辣根和麵包・老波希米亞餡餅＋酒水"),
              ("晚", "蔬菜奶油濃湯・豬小里肌（腰內肉）佐蘑菇醬和馬鈴薯泥・傳統蘋果派＋酒水")],
@@ -960,11 +961,11 @@ def render_guide():
 
 def render_stays():
     rows = "".join(
-        f'<tr><td class="s-d">{d}<span class="s-n">{n}</span></td><td class="s-c"><a href="#d{day}">{c}</a></td>'
-        f'<td class="s-h"><span class="h-zh">{HOTEL_ZH[key]}</span>'
+        f'<tr id="stay-d{day}" data-d1="{day}" data-d2="{day + int(n.split()[0]) - 1}"><td class="s-d">{d}<span class="s-n">{n}</span></td><td class="s-c"><a href="#d{day}">{c}</a></td>'
+        f'<td class="s-h"><span class="h-zh">{HOTEL_ZH[key]}</span><span class="today-pill s-now" hidden>今晚</span>'
         f'<span class="h-en">{esc(h)}</span>{hotel_links(key)}</td></tr>'
         for d, n, c, h, key, day in STAYS)
-    return (f'<div class="stays"><table><caption>住宿一覽・9 晚</caption>'
+    return (f'<div class="stays" id="stays" data-label="住宿"><table><caption>住宿一覽・9 晚</caption>'
             f'<thead><tr><th>日期</th><th>城市</th><th>飯店（點開地圖）</th></tr></thead><tbody>{rows}</tbody></table></div>')
 
 def render_gift(g):
@@ -1092,6 +1093,7 @@ BODY = f'''<div id="app">
 <div class="fabs">
 <a class="fab home" id="homeFab" href="#top" aria-label="回到首頁"><span aria-hidden="true">↑</span><small>首頁</small></a>
 <a class="fab places" id="guideFab" href="#guide" aria-label="跳到景點百科"><span aria-hidden="true">▲</span><small>景點</small></a>
+<a class="fab stay" id="stayFab" href="#stays" aria-label="跳到住宿一覽"><span aria-hidden="true">宿</span><small>飯店</small></a>
 </div>
 <script>{JS}</script>
 '''

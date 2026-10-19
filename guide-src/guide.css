@@ -76,6 +76,9 @@ p{margin:0}
 .stays th:first-child,.stays td:first-child{padding-left:0}
 .s-d{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--ink2);font-size:.85rem;line-height:1.45}
 .s-n{display:block;color:var(--garnet);font-weight:700}
+.stays tr.now td{background:var(--gold-wash)}
+.s-now{margin-left:6px;vertical-align:1px}
+.stays,.stays tr{scroll-margin-top:calc(var(--rail-h) + env(safe-area-inset-top,0px) + 8px)}
 .s-c a{font-weight:700;text-decoration:none;white-space:nowrap}
 .s-h{font-size:.88rem;line-height:1.4}
 .s-h a{color:var(--ink);font-weight:500;text-decoration:none}
@@ -111,6 +114,8 @@ p{margin:0}
 .fab.home{background:var(--garnet);color:var(--on-garnet)}
 .fab.places{background:var(--sheet);color:var(--garnet);border:2px solid var(--garnet)}
 .fab.places span{font-size:.95rem}
+.fab.stay{background:var(--sheet);color:var(--garnet);border:2px solid var(--garnet)}
+.fab.stay span{font-size:1.05rem;font-family:var(--f-head)}
 .fab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .js .fab{transition:opacity .2s,transform .2s}
 .js .fab.away{opacity:0;pointer-events:none;transform:translateY(8px)}

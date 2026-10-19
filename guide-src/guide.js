@@ -77,6 +77,13 @@
     if (location.hash === "#guide") route(); else location.hash = "#guide";
     fabState();
   });
+  var sfab = document.getElementById("stayFab");
+  sfab.addEventListener("click", function (e) {
+    e.preventDefault();
+    var h = sfab.getAttribute("href");
+    if (location.hash === h) route(); else location.hash = h;
+    fabState();
+  });
   window.addEventListener("scroll", fabState, { passive: true });
   window.addEventListener("hashchange", fabState);
 
@@ -269,6 +276,14 @@
     if (pill) pill.hidden = false;
     var chip = rail && rail.querySelector('.chip[data-day="' + n + '"]');
     if (chip) chip.classList.add("today");
+    var rows = document.querySelectorAll(".stays tr[data-d1]");
+    for (var r = 0; r < rows.length; r++) {
+      if (n >= +rows[r].getAttribute("data-d1") && n <= +rows[r].getAttribute("data-d2")) {
+        rows[r].classList.add("now");
+        rows[r].querySelector(".s-now").hidden = false;
+        sfab.href = "#" + rows[r].id;
+      }
+    }
   } else {
     count.textContent = "旅程已結束，歡迎回味";
   }
